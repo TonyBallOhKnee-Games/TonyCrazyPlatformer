@@ -1,2 +1,7 @@
 # TonyCrazyPlatformer
- The Source Code for the funny
+ The open source platformer game about Tony Dovark parkouring for free pizza.
+
+## Developers:
+
+* TonyBallOhKnee - Did most of the game's code and all art and music
+* TorchTheDragon - Helped my dumb ass
