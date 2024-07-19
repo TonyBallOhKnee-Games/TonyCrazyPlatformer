@@ -6,6 +6,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.util.FlxColor;
 
 class BasmaHUD extends FlxTypedGroup<FlxSprite> {
 
@@ -58,6 +59,8 @@ class BasmaHUD extends FlxTypedGroup<FlxSprite> {
         
         scoreText = new FlxText(0, 0, 0, "Score: 0");
         scoreText.scrollFactor.set(0,0);
+        scoreText.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        scoreText.antialiasing = true;
 
         add(scoreText);
 

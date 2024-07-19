@@ -19,6 +19,8 @@ class MainMenuState extends FlxState
     {
         super.create();
 
+        curSelected = 0; // Set curSelected to 0 at the start of the state
+
         FlxG.sound.playMusic("assets/music/MainNew.wav", 0.5, true);
 
         // Add background image
@@ -117,9 +119,10 @@ class MainMenuState extends FlxState
         }
         if (FlxG.keys.justPressed.ENTER) {
             switch (curSelected) {
-                case 0: startGame();
+                case 0: startGame(); 
                 case 1: // Implement load game logic here
-                case 2: goToOptions();
+                        
+                case 2: goToOptions(); 
             }
         }
 
