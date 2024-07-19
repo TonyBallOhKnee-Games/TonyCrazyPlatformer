@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="autoSave.png">
+	<!-- Created with Adobe Animate version 22.0.6.202 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dancing instance 10000" x="10" y="10" width="137" height="114"/>
+	<SubTexture name="dancing instance 10001" x="10" y="10" width="137" height="114"/>
+	<SubTexture name="dancing instance 10002" x="197" y="10" width="137" height="114"/>
+	<SubTexture name="dancing instance 10003" x="197" y="10" width="137" height="114"/>
+	<SubTexture name="dancing instance 10004" x="10" y="174" width="137" height="114"/>
+	<SubTexture name="dancing instance 10005" x="10" y="174" width="137" height="114"/>
+	<SubTexture name="dancing instance 10006" x="197" y="10" width="137" height="114"/>
+	<SubTexture name="dancing instance 10007" x="197" y="10" width="137" height="114"/>
+</TextureAtlas>
