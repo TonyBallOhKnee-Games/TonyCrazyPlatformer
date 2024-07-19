@@ -1,7 +1,7 @@
 # TonyCrazyPlatformer
  The open source platformer game about Tony Dovark parkouring for free pizza.
 
- ![](https://imgur.com/53CjWZh)
+ ![](https://i.imgur.com/53CjWZh.png)
 
 ## Developers:
 
