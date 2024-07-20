@@ -59,7 +59,7 @@ class BasmaHUD extends FlxTypedGroup<FlxSprite> {
         
         scoreText = new FlxText(0, 0, 0, "Score: 0");
         scoreText.scrollFactor.set(0,0);
-        scoreText.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        scoreText.setFormat("assets/fonts/baloney.ttf", 50, FlxColor.WHITE);
         scoreText.antialiasing = true;
 
         add(scoreText);

@@ -33,6 +33,7 @@
 	<source path="source" />
 	<assets path="assets" />
 	<assets path="assets/fonts" />
+	<assets path="assets/videos" />
 
 
 		<!-- _______________________________ Libraries ______________________________ -->
@@ -44,10 +45,10 @@
 	<haxelib name="tjson" />
 
 	<!--Psych stuff needed-->
-	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
-	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
-	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
-	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
+	<haxelib name="linc_luajit"/>
+	<haxelib name="SScript"/>
+	<haxelib name="hxCodec"/>
+	<haxelib name="hxdiscord_rpc"/>
 	<haxelib name="flxanimate"/>
 
 	<!-- Disable Discord IO Thread -->
