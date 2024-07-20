@@ -17,12 +17,13 @@ class StartingCutSceneState extends FlxState
         video.play('assets/videos/video.mp4');
         video.onEndReached.add(onVideoEnd); // Use a custom function for when the video ends
 
+
     
     }
 
     private function onVideoEnd():Void
     {
-        video.dispose(); // Dispose of the video
+        //video.dispose(); // Dispose of the video
         FlxG.switchState(new MainMenuState()); // Change to MainMenuState
     }
 }
