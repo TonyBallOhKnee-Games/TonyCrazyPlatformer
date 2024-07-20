@@ -14,7 +14,7 @@ class StartingCutSceneState extends FlxState
     {
         super.create();
         
-        video.play('assets/videos/test.mp4');
+        video.play('assets/videos/video.mp4');
         video.onEndReached.add(onVideoEnd); // Use a custom function for when the video ends
 
     
