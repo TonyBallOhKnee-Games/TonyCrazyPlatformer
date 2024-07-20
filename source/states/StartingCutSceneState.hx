@@ -8,7 +8,7 @@ import states.MainMenuState; // Import the MainMenuState
 class StartingCutSceneState extends FlxState
 {
     
-    var video:FlxVideo = new FlxVideo();
+    public var video:FlxVideo = new FlxVideo();
     
     override public function create():Void
     {
