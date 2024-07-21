@@ -62,7 +62,7 @@ class WarningState extends FlxState
             
          if (FlxG.keys.anyPressed([ENTER, SPACE])){
             FlxG.sound.play("assets/sounds/confirmMenu.ogg");
-            FlxG.switchState(new StartingCutSceneState());
+            FlxG.switchState(new MainMenuState());
             
         };
 
