@@ -7,4 +7,4 @@
 
 * TonyBallOhKnee - So far, has does all the code up to this point in development (7/21/2024)
 * TorchTheDragon - Potential Coder
-* ZSolarDev - Potential Coder
+* ZSolarDev - Told me to remove all things relating to FNF, also FPS counter.
