@@ -1,14 +1,12 @@
-package frontend.states;
+package frontend.states.substates;
 
 import flixel.FlxG;
 import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import openfl.Lib;
-import openfl.events.KeyboardEvent;
 
-class PauseState extends FlxSubState
+class PauseSubState extends FlxSubState
 {
 	override public function create():Void
 	{
@@ -26,8 +24,7 @@ class PauseState extends FlxSubState
 
 	private function resumeGame():Void
 	{
-		// Resume the game by removing this pause state
-		FlxG.state.remove(this);
+		close();
 	}
 
 	// Override the update method to listen for key presses
@@ -35,7 +32,6 @@ class PauseState extends FlxSubState
 	{
 		super.update(elapsed);
 
-		// Check if the Escape key is pressed to resume the game
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			resumeGame();

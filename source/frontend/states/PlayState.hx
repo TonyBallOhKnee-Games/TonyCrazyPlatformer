@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
+import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxState
 {
@@ -35,7 +36,7 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
-			FlxG.switchState(new MainMenuState());
+			openSubState(new PauseSubState());
 		}
 		if (FlxG.keys.justPressed.R)
 		{

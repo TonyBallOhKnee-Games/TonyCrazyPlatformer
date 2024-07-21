@@ -20,9 +20,9 @@ class Player extends FlxSprite
 		animation.addByPrefix('Walk', 'Run', 24, true);
 		animation.addByPrefix('JumpInt', 'JumpInt', 24, true);
 		animation.addByPrefix('Jump', 'Jump0', 24, true);
-		animation.addByPrefix('Crouch', 'Crouch', 24, true);
+		animation.addByPrefix('Crouch', 'Crouch', 24, false);
 
-		scale.set(0.5, 0.5);
+		scale.set(0.35, 0.35);
 		updateHitbox();
 		drag.x = SPEED * 4;
 
@@ -45,7 +45,11 @@ class Player extends FlxSprite
 		else
 		{
 			if (down)
-				animation.play("Crouch");
+			{
+				if (animation.finished && animation.name == 'Crouch') {} // Why did this logic take 5 whole minutes
+				else
+					animation.play("Crouch");
+			}
 			else
 				animation.play("Idle");
 		}
