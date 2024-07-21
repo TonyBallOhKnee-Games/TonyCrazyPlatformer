@@ -1,4 +1,4 @@
-Todo list:
 TODO: Implement load game logic
+TODO: Rework Toby's animations
 CRITICAL: Rework the death graphics
 CRITICAL: Rework the hud
