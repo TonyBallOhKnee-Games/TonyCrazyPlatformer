@@ -49,15 +49,4 @@ class DeadState extends FlxState
 		// warnText.screenCenter(X);
 		// add(warnText);
 	}
-
-	override function update(elapsed:Float)
-	{
-		if (FlxG.keys.anyPressed([ENTER, SPACE]))
-		{
-			FlxG.sound.play("assets/sounds/confirmMenu.ogg");
-			FlxG.switchState(new MainMenuState());
-		};
-
-		super.update(elapsed);
-	}
 }
