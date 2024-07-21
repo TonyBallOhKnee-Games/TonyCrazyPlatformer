@@ -16,7 +16,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="60" background="#FF00FF" hardware="true" vsync="false" />
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="false" />
@@ -42,18 +42,10 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-addons" />
-	<haxelib name="tjson" />
 
-	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit"/>
-	<haxelib name="SScript"/>
-	<haxelib name="hxvlc" if="desktop || mobile" />
 	<haxelib name="hxdiscord_rpc"/>
 	<haxelib name="flxanimate"/>
-
-
-
-	
 
 	<!-- Enables a terminal log prompt on debug builds -->
 	<haxelib name="hxcpp-debug-server" if="debug"/>
