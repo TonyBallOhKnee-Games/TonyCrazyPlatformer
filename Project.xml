@@ -42,12 +42,12 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-addons" />
-	<haxelib name="tjson" />
+
 
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit"/>
-	<haxelib name="SScript"/>
-	<haxelib name="hxvlc" if="desktop || mobile" />
+
+
 	<haxelib name="hxdiscord_rpc"/>
 	<haxelib name="flxanimate"/>
 
