@@ -30,7 +30,6 @@ class DeadState extends FlxState
 		// warnText.screenCenter(X);
 		// add(warnText);
 
-		dead.anim.addBySymbol("TonyDies", "Dies", -219.75, -344.25, 24);
 		// dead.anim.addBySymbol(AnimationName, SymbolName, X, Y, Framerate);
 	}
 
@@ -48,16 +47,5 @@ class DeadState extends FlxState
 		// warnText.screenCenter(Y);
 		// warnText.screenCenter(X);
 		// add(warnText);
-	}
-
-	override function update(elapsed:Float)
-	{
-		if (FlxG.keys.anyPressed([ENTER, SPACE]))
-		{
-			FlxG.sound.play("assets/sounds/confirmMenu.ogg");
-			FlxG.switchState(new MainMenuState());
-		};
-
-		super.update(elapsed);
 	}
 }
