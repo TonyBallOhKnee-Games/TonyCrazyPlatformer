@@ -1,11 +1,8 @@
-package states;
+package frontend.states;
 
 import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
@@ -34,12 +31,8 @@ class WarningState extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.keys.anyPressed([ENTER, SPACE]))
-		{
-			FlxG.sound.play("assets/sounds/confirmMenu.ogg");
-			FlxG.switchState(new MainMenuState());
-		};
-
 		super.update(elapsed);
+		if (FlxG.keys.anyPressed([ENTER, SPACE]))
+			FlxG.switchState(new MainMenuState());
 	}
 }

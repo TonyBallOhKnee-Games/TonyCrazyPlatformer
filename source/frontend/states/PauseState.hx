@@ -1,4 +1,4 @@
-package states;
+package frontend.states;
 
 import flixel.FlxG;
 import flixel.FlxSubState;
