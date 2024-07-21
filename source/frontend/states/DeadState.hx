@@ -14,12 +14,13 @@ class DeadState extends FlxState
 	{
 		super.create();
 
-		var dead:FlxSprite = new FlxSprite(-221.65, -340.7);
+		var dead:FlxSprite = new FlxSprite(0, 0);
 
 		dead.loadGraphic('assets/images/deathScreen/Dead.png', true);
 		dead.frames = FlxAtlasFrames.fromSparrow('assets/images/deathScreen/Dead.png', 'assets/images/deathScreen/Dead.xml');
 		dead.animation.addByPrefix('Dead', 'Dying', 24, false);
-		FlxG.sound.play("assets/sounds/deadTony.wav", 0.5, true);
+		FlxG.sound.music.stop();
+		FlxG.sound.play("assets/sounds/deadTony.wav", 0.5, false);
 	}
 
 	override function update(elapsed:Float)
