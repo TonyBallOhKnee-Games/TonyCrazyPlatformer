@@ -1,15 +1,29 @@
 package states;
 
-import vlc.VLC;
-import vlc.MediaPlayer;
-import vlc.Media;
+import flixel.FlxState;
+//import hxcodec.flixel.FlxVideo;
+import flixel.FlxG; // Import for changing state
+import states.MainMenuState; // Import the MainMenuState
 
-class Main {
-    static function main() {
-        var instance = new VLC([]);
-        var player = new MediaPlayer(instance);
-        var media = new Media(instance, "path/to/your/video.mp4");
-        player.media = media;
-        player.play();
+class StartingCutSceneState extends FlxState
+{
+    
+    //public var video:FlxVideo = new FlxVideo();
+    
+    override public function create():Void
+    {
+        super.create();
+        
+        //video.play('assets/videos/video.mp4');
+        //video.onEndReached.add(onVideoEnd); // Use a custom function for when the video ends
+
+
+    
+    }
+
+    private function onVideoEnd():Void
+    {
+        //video.dispose(); // Dispose of the video
+        //FlxG.switchState(new MainMenuState()); // Change to MainMenuState
     }
 }
