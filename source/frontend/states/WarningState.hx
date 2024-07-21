@@ -13,6 +13,7 @@ class WarningState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+		FlxG.autoPause = false;
 		this.bgColor = 0xff000000;
 		var clouds:FlxSprite = new FlxSprite(0, 0);
 		clouds.loadGraphic("assets/images/warning/Hey.png");

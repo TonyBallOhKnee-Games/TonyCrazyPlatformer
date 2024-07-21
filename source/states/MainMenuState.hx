@@ -22,7 +22,7 @@ class MainMenuState extends FlxState
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
-		FlxG.sound.playMusic("assets/music/MainNew.wav", 0.5, true);
+		FlxG.sound.playMusic("assets/music/MainNew.wav", 0.3, true);
 
 		// Add background image
 		var sky:FlxSprite = new FlxSprite(0, 0);
