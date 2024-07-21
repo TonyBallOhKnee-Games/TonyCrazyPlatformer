@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NewHUD.png">
+	<!-- Created with Adobe Animate version 22.0.6.202 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="GloriaTut0000" x="10" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0001" x="10" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0002" x="300" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0003" x="300" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0004" x="590" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0005" x="590" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0006" x="880" y="10" width="240" height="262"/>
+	<SubTexture name="GloriaTut0007" x="880" y="10" width="240" height="262"/>
+	<SubTexture name="Hudparts0000" x="1170" y="10" width="657" height="178"/>
+	<SubTexture name="TonyHealth0000" x="1877" y="10" width="131" height="97"/>
+	<SubTexture name="TonyHealth0001" x="10" y="322" width="131" height="97"/>
+	<SubTexture name="TonyHealth0002" x="191" y="322" width="131" height="97"/>
+	<SubTexture name="speech0000" x="372" y="322" width="1010" height="159"/>
+	<SubTexture name="speech0001" x="372" y="322" width="1010" height="159"/>
+	<SubTexture name="speech0002" x="10" y="531" width="1010" height="159"/>
+	<SubTexture name="speech0003" x="10" y="531" width="1010" height="159"/>
+	<SubTexture name="speech0004" x="10" y="740" width="1010" height="159"/>
+	<SubTexture name="speech0005" x="10" y="740" width="1010" height="159"/>
+</TextureAtlas>
