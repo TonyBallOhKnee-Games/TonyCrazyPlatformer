@@ -30,7 +30,6 @@ class DeadState extends FlxState
 		// warnText.screenCenter(X);
 		// add(warnText);
 
-		dead.anim.addBySymbol("TonyDies", "Dies", -219.75, -344.25, 24);
 		// dead.anim.addBySymbol(AnimationName, SymbolName, X, Y, Framerate);
 	}
 
