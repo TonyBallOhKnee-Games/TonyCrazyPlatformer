@@ -7,7 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 class Player extends FlxSprite
 {
-	final SPEED:Int = 450;
+	final SPEED:Int = 450; //450 is default
 	final GRAVITY:Int = 600;
 
 	public function new(xPos:Int = 0, yPos:Int = 0, name:String)

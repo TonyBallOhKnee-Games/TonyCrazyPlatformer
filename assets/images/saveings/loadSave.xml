@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="loadSave.png">
+	<!-- Created with Adobe Animate version 22.0.6.202 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Jitters instance 10000" x="10" y="10" width="767" height="174"/>
+	<SubTexture name="Jitters instance 10001" x="10" y="234" width="767" height="174"/>
+	<SubTexture name="Jitters instance 10002" x="10" y="458" width="767" height="174"/>
+</TextureAtlas>
