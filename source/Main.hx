@@ -2,9 +2,8 @@ package;
 
 import debug.FPSCounter;
 import flixel.FlxGame;
+import frontend.states.WarningState;
 import openfl.display.Sprite;
-import states.WarningState;
-
 
 class Main extends Sprite
 {

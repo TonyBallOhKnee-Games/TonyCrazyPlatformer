@@ -44,7 +44,10 @@ class Player extends FlxSprite
 		}
 		else
 		{
-			animation.play("Idle");
+			if (down)
+				animation.play("Crouch");
+			else
+				animation.play("Idle");
 		}
 
 		if (left && right)
