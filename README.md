@@ -5,5 +5,6 @@
 
 ## Developers:
 
-* TonyBallOhKnee - Did most of the game's code and all art and music
-* TorchTheDragon - Helped my dumb ass
+* TonyBallOhKnee - So far, has does all the code up to this point in development (7/21/2024)
+* TorchTheDragon - Potential Coder
+* ZSolarDev - Potential Coder
