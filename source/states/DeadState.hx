@@ -29,6 +29,25 @@ class DeadState extends FlxState
 		// warnText.screenCenter(Y);
 		// warnText.screenCenter(X);
 		// add(warnText);
+
+		dead.anim.addBySymbol("TonyDies", "Dies", -219.75, -344.25, 24);
+		// dead.anim.addBySymbol(AnimationName, SymbolName, X, Y, Framerate);
+	}
+
+	override function update(elapsed:Float)
+	{
+		if (FlxG.keys.anyPressed([ENTER, SPACE]))
+		{
+			FlxG.sound.play("assets/sounds/confirmMenu.ogg");
+			FlxG.switchState(new MainMenuState());
+		};
+		// //add version text
+		// var warnText:FlxText = new FlxText(0, 0, 685.6, "Your dead. El bozo.", 40);
+		// warnText.scrollFactor.set();
+		// warnText.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, CENTER);
+		// warnText.screenCenter(Y);
+		// warnText.screenCenter(X);
+		// add(warnText);
 	}
 
 	override function update(elapsed:Float)
