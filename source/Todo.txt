@@ -1,4 +1,4 @@
 TODO: Implement load game logic
-TODO: Rework Toby's animations
+TODO: Add Tony's jump and fall animations
 CRITICAL: Rework the death graphics
 CRITICAL: Rework the hud
