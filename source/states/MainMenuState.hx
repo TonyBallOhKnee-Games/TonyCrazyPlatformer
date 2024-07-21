@@ -74,7 +74,7 @@ class MainMenuState extends FlxState
 		add(gameVer);
 
 		// Add YouTube button
-		var youtubeButton:FlxButton = new FlxButton(0, 700, "YouTube", openYouTube);
+		var youtubeButton:FlxButton = new FlxButton(1270, 700, "YouTube", openYouTube);
 		add(youtubeButton);
 	}
 
