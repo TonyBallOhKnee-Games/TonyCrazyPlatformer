@@ -10,12 +10,16 @@ import flixel.util.FlxColor;
 
 class GameHud extends FlxTypedGroup<FlxSprite>
 {
+	
+	
 	var scoreText:FlxText;
 	var score = 0;
 
 	public function new()
 	{
 		super();
+
+		var coolness:FlxSprite = new FlxSprite(0,0);
 	}
 
 	public function incrementScore()
