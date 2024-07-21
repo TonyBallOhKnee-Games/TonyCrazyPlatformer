@@ -20,7 +20,7 @@ class DeadState extends FlxState
 
     public static var curSelected: Int = 0; // Selected menu option (0: Start, 1: Load, 2: Options)
 
-    var dead:FlxAnimate = new FlxAnimate(0, 0, "assets/images/characters/TonyDiesAnim");
+    var dead:FlxAnimate = new FlxAnimate(0, 0, "assets/images/characters/TonyDiesAnim/TonyDead");
 
     override public function create():Void
     {
@@ -41,8 +41,8 @@ class DeadState extends FlxState
         // warnText.screenCenter(X);
         // add(warnText);
 
-        dead.anim.addBySymbol("TonyDies", "Dies", 0, 0, 24);
-        
+        dead.anim.addBySymbol("TonyDies", "Dies", -219.75, -344.25, 24);
+        dead.anim.addBySymbol(AnimationName, SymbolName, X, Y, Framerate);
 
 
     }
