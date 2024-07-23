@@ -5,6 +5,7 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
+import flixel.FlxSprite;
 
 class OptionsState extends FlxState
 {
@@ -12,6 +13,11 @@ class OptionsState extends FlxState
 	{
 		super.create();
 
+		var background:FlxSprite = new FlxSprite(0, 0);
+		background.loadGraphic("assets/images/optionsBG.png");
+		background.antialiasing = true;
+		add(background);
+		
 		// Add title text
 		var title:FlxText = new FlxText(0, FlxG.height / 4, FlxG.width, "Options");
 		title.setFormat(null, 32, FlxColor.WHITE, "center");
