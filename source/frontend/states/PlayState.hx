@@ -19,7 +19,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		bgColor = 0xffcccccc;
+		bgColor = 0xffffffff;
 
 		tonyPlayer = new Player(0, 0, 'Tony');
 		tonyPlayer.antialiasing = true;
