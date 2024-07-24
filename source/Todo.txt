@@ -2,5 +2,6 @@ TODO: Implement load game logic
 TODO: Add Tony's jump and fall animations\
 TODO: Loading feature
 TOOD: Results Screen Animations (for Baloney)
+TODO: Loading Screen
 CRITICAL: Rework the death graphics
 CRITICAL: Rework the hud
