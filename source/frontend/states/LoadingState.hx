@@ -5,12 +5,13 @@ import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
+import flixel.system.FlxAssets;
 
 class LoadingState extends FlxState
 {
     private var loadingText:FlxText;
     private var loadingBar:FlxSprite;
-    private var loadComplete:Bool = false;
+    private var loadingProgress:Float = 0;
 
     override public function create():Void
     {
@@ -28,6 +29,7 @@ class LoadingState extends FlxState
         loadingBar = new FlxSprite(FlxG.width / 4, FlxG.height / 2 + 20);
         loadingBar.makeGraphic(FlxG.width / 2, 10, FlxColor.WHITE);
         loadingBar.scrollFactor.set();
+        loadingBar.scale.x = 0;
         add(loadingBar);
 
         // Start loading assets
@@ -36,26 +38,33 @@ class LoadingState extends FlxState
 
     private function loadAssets():Void
     {
-        // Simulate asset loading with a timer
-        FlxG.assets.loadBitmap("assets/images/someImage.png");
-        FlxG.assets.loadSound("assets/sounds/someSound.mp3");
+        // Load images
+        FlxG.assets.loadGraphic("assets/images/someImage.png", false, true, 100, 100);
+        FlxG.assets.loadGraphic("assets/images/anotherImage.png", false, true, 100, 100);
 
-        FlxG.timer.start(3, function(timer):Void {
-            loadComplete = true;
-        });
+        // Load sounds
+        FlxG.assets.loadSound("assets/sounds/someSound.mp3");
+        FlxG.assets.loadSound("assets/sounds/anotherSound.mp3");
+
+        // Preload the assets
+        FlxG.assets.onLoadComplete = onAssetsLoaded;
+    }
+
+    private function onAssetsLoaded():Void
+    {
+        // Transition to the next state when loading is complete
+        FlxG.switchState(new PlayState());
     }
 
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
 
-        // Update loading bar width based on loading progress
-        loadingBar.scale.x = FlxG.assets.progress;
-
-        // If loading is complete, switch to the next state
-        if (loadComplete)
-        {
-            FlxG.switchState(new PlayState());
-        }
+        // Update loading progress
+        loadingProgress = FlxG.assets.progress;
+        loadingBar.scale.x = loadingProgress;
+        
+        // Optionally, you can display the percentage of loading
+        loadingText.text = "Loading... " + Math.round(loadingProgress * 100) + "%";
     }
 }
