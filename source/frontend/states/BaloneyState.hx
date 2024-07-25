@@ -40,7 +40,7 @@ class BaloneyState extends FlxState
 		if (dead.animation.finished && !swichingShit) {
 
 			swichingShit = true;
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new WarningState());
 
 		};
 
