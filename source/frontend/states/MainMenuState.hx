@@ -9,12 +9,14 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import openfl.Lib;
 import openfl.net.URLRequest;
+import flixel.graphics.frames.FlxAtlasFrames;
 
 class MainMenuState extends FlxState
 {
 	public static var curSelected:Int = 0; // Selected menu option (0: Start, 1: Load, 2: Options)
 
 	private var selectorguy:FlxSprite;
+	public var logoShit:FlxSprite = new FlxSprite(-612.65, -59.2);
 
 	override public function create():Void
 	{
@@ -41,9 +43,11 @@ class MainMenuState extends FlxState
 		imSoHappySoHappyGoLuckyMe.antialiasing = true;
 		add(imSoHappySoHappyGoLuckyMe);
 
-		var logoShit:FlxSprite = new FlxSprite(734.3, 6.75);
-		logoShit.loadGraphic("assets/images/title/logo.png");
+		logoShit.loadGraphic('assets/images/title/logo.png', true);
+		logoShit.frames = FlxAtlasFrames.fromSparrow('assets/images/title/logo.png', 'assets/images/title/logo.xml');
+		logoShit.animation.addByPrefix('logoShit', 'coolness', 24, false);
 		logoShit.antialiasing = true;
+		logoShit.animation.play("logoShit");
 		add(logoShit);
 
 		var start:FlxSprite = new FlxSprite(840.85, 442.1);
