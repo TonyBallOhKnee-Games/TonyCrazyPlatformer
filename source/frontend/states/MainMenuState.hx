@@ -123,7 +123,7 @@ class MainMenuState extends FlxState
 			{ 
 				type:       ONESHOT,
 				ease:       FlxEase.circInOut,
-				startDelay: 0.83333333333333333333333333333333
+				startDelay: 1.5
 			}
 		);
 		
