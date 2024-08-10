@@ -109,7 +109,7 @@ class MainMenuState extends FlxState
 		add(credtis);
 
 		selectorguy = new FlxSprite(1095.75, 450.35);
-		selectorguy.loadGraphic("assets/images/title/selectorthingy.png");
+		selectorguy.loadGraphic("assets/images/title/unused/selectorthingy.png");
 		selectorguy.antialiasing = true;
 		add(selectorguy);
 
@@ -123,7 +123,8 @@ class MainMenuState extends FlxState
 			{ 
 				type:       ONESHOT,
 				ease:       FlxEase.circInOut,
-				startDelay: 1.5
+				startDelay: 1.3
+
 			}
 		);
 		
@@ -144,6 +145,11 @@ class MainMenuState extends FlxState
 		FlxG.switchState(new OptionsState());
 	}
 
+	private function goToCredits():Void
+		{
+			FlxG.switchState(new CreditsState());
+		}
+
 	private function openYouTube():Void
 	{
 		Lib.getURL(new URLRequest("https://www.youtube.com/@TonyBallOhKnee"), "_blank");
@@ -160,11 +166,17 @@ class MainMenuState extends FlxState
 		switch (curSelected)
 		{
 			case 0:
-				selectorguy.y = 450.35;
+			selectorguy.x = 577.65;	
+			selectorguy.y = 465.35;
 			case 1:
-				selectorguy.y = 520.95;
+			selectorguy.x = 715.85;	
+			selectorguy.y = 529.15;
 			case 2:
-				selectorguy.y = 601.9;
+			selectorguy.x = 790.1;
+			selectorguy.y = 581.15;
+			case 3:
+			selectorguy.x = 851.3;
+			selectorguy.y = 639.05;	
 		}
 	}
 
@@ -188,9 +200,13 @@ class MainMenuState extends FlxState
 
 				case 2:
 					goToOptions();
+				case 3:
+					goToCredits();
 			}
 		}
 
 		super.update(elapsed);
 	}
+
+
 }
