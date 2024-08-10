@@ -115,7 +115,7 @@ class MainMenuState extends FlxState
 		FlxTween.tween(selectorguy, { x: 577.65, y: 465.35 }, 2, 
 			{ 
 				type:       ONESHOT,
-				ease:       FlxEase.circInOut,
+				ease:       FlxEase.quartOut,
 				startDelay: 2
 			}
 			);
@@ -174,17 +174,45 @@ class MainMenuState extends FlxState
 		switch (curSelected)
 		{
 			case 0:
-			selectorguy.x = 577.65;	
-			selectorguy.y = 465.35;
+			//selectorguy.x = 577.65;	
+			//selectorguy.y = 465.35;
+
+			FlxTween.tween(selectorguy, { x: 577.65, y: 465.35 }, 2, 
+				{ 
+					type:       ONESHOT,
+					ease:       FlxEase.circOut,
+				}
+			);
 			case 1:
-			selectorguy.x = 715.85;	
-			selectorguy.y = 529.15;
+			//selectorguy.x = 715.85;	
+			//selectorguy.y = 529.15;
+
+			FlxTween.tween(selectorguy, { x: 715.85, y: 529.15 }, 2, 
+				{ 
+					type:       ONESHOT,
+					ease:       FlxEase.circOut,
+				}
+			);
 			case 2:
-			selectorguy.x = 790.1;
-			selectorguy.y = 581.15;
+			//selectorguy.x = 790.1;
+			//selectorguy.y = 581.15;
+
+			FlxTween.tween(selectorguy, { x: 790.1, y: 581.15 }, 2, 
+				{ 
+					type:       ONESHOT,
+					ease:       FlxEase.circOut,
+				}
+			);
 			case 3:
-			selectorguy.x = 851.3;
-			selectorguy.y = 639.05;	
+			//selectorguy.x = 851.3;
+			//selectorguy.y = 639.05;	
+
+			FlxTween.tween(selectorguy, { x: 851.3, y: 639.05 }, 2, 
+				{ 
+					type:       ONESHOT,
+					ease:       FlxEase.circOut,
+				}
+			);
 		}
 	}
 
