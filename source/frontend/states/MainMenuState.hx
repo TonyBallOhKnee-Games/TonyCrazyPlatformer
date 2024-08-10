@@ -116,7 +116,7 @@ class MainMenuState extends FlxState
 		// Add version text
 		var gameVer:FlxText = new FlxText(-700, 12, 0, "Tony's Crazy Adventures Game V1 \nCreated by TonyBallOhKnee", 40);
 		gameVer.scrollFactor.set();
-		gameVer.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		gameVer.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		gameVer.antialiasing = true;
 		
 		FlxTween.tween(gameVer, { x: 12, y: 12 }, 2, 
