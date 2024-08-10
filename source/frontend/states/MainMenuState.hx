@@ -108,9 +108,17 @@ class MainMenuState extends FlxState
 
 		add(credtis);
 
-		selectorguy = new FlxSprite(1095.75, 450.35);
+		selectorguy = new FlxSprite(1290.65, 465.35);
 		selectorguy.loadGraphic("assets/images/title/unused/selectorthingy.png");
 		selectorguy.antialiasing = true;
+
+		FlxTween.tween(selectorguy, { x: 577.65, y: 465.35 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 2
+			}
+			);
 		add(selectorguy);
 
 		// Add version text
