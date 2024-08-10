@@ -159,8 +159,8 @@ class MainMenuState extends FlxState
 	{
 		curSelected += direction;
 		if (curSelected < 0)
-			curSelected = 2;
-		if (curSelected > 2)
+			curSelected = 3;
+		if (curSelected > 3)
 			curSelected = 0;
 
 		switch (curSelected)

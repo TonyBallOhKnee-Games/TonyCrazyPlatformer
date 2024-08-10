@@ -46,7 +46,8 @@ class BaloneyState extends FlxState
 
 		if (FlxG.keys.anyPressed([ENTER, SPACE]))
 		{
-			
+			swichingShit = true;
+			FlxG.switchState(new WarningState());
 		};
 	}
 }

@@ -47,7 +47,11 @@ class DeadState extends FlxState
 
 		if (FlxG.keys.anyPressed([ENTER, SPACE]))
 		{
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new PlayState());
 		};
+		if (FlxG.keys.anyPressed([ESCAPE, BACKSPACE]))
+			{
+				FlxG.switchState(new MainMenuState());
+			};
 	}
 }
