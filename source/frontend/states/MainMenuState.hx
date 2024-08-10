@@ -10,6 +10,9 @@ import flixel.util.FlxColor;
 import openfl.Lib;
 import openfl.net.URLRequest;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+
 
 class MainMenuState extends FlxState
 {
@@ -17,6 +20,7 @@ class MainMenuState extends FlxState
 
 	private var selectorguy:FlxSprite;
 	public var logoShit:FlxSprite = new FlxSprite(-612.65, -59.2);
+	public var tonyDovark:FlxSprite = new FlxSprite(986.9, 347.45);
 
 	override public function create():Void
 	{
@@ -32,16 +36,7 @@ class MainMenuState extends FlxState
 		sky.antialiasing = true;
 		add(sky);
 
-		var clouds:FlxSprite = new FlxSprite(-81.7, 5.9);
-		clouds.loadGraphic("assets/images/title/clouds.png");
-		clouds.antialiasing = true;
-		add(clouds);
-
-		// Add additional menu images
-		var imSoHappySoHappyGoLuckyMe:FlxSprite = new FlxSprite(78, 99.95);
-		imSoHappySoHappyGoLuckyMe.loadGraphic("assets/images/title/tony.png");
-		imSoHappySoHappyGoLuckyMe.antialiasing = true;
-		add(imSoHappySoHappyGoLuckyMe);
+		
 
 		logoShit.loadGraphic('assets/images/title/logo.png', true);
 		logoShit.frames = FlxAtlasFrames.fromSparrow('assets/images/title/logo.png', 'assets/images/title/logo.xml');
@@ -50,20 +45,68 @@ class MainMenuState extends FlxState
 		logoShit.animation.play("logoShit");
 		add(logoShit);
 
-		var start:FlxSprite = new FlxSprite(840.85, 442.1);
+		tonyDovark.loadGraphic('assets/images/title/TonyMenu.png', true);
+		tonyDovark.frames = FlxAtlasFrames.fromSparrow('assets/images/title/TonyMenu.png', 'assets/images/title/TonyMenu.xml');
+		tonyDovark.animation.addByPrefix('tonyDovark', 'TonyBop', 24, false);
+		tonyDovark.antialiasing = true;
+		tonyDovark.animation.play("tonyDovark");
+		add(tonyDovark);
+
+		var start:FlxSprite = new FlxSprite(1430.6, 465.35);
 		start.loadGraphic("assets/images/title/new game.png");
 		start.antialiasing = true;
+		
+		FlxTween.tween(start, { x: 374.95, y: 465.35 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 0.83333333333333333333333333333333
+			}
+		);
+
 		add(start);
 
-		var load:FlxSprite = new FlxSprite(831.4, 520.95);
+		var load:FlxSprite = new FlxSprite(1424.4, 523.25);
 		load.loadGraphic("assets/images/title/loadgame.png");
 		load.antialiasing = true;
+		
+		FlxTween.tween(load, { x: 493.75, y: 523.25 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 0.83333333333333333333333333333333
+			}
+		);
+		
 		add(load);
 
-		var options:FlxSprite = new FlxSprite(835.35, 601.9);
+		var options:FlxSprite = new FlxSprite(1456.3, 581.15);
 		options.loadGraphic("assets/images/title/options.png");
 		options.antialiasing = true;
+		
+		FlxTween.tween(options, { x: 637, y: 581.15 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 0.83333333333333333333333333333333
+			}
+		);
+		
 		add(options);
+
+		var credtis:FlxSprite = new FlxSprite(1462.45, 639.05);
+		credtis.loadGraphic("assets/images/title/credits.png");
+		credtis.antialiasing = true;
+		
+		FlxTween.tween(credtis, { x: 709.75, y: 639.05 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 0.83333333333333333333333333333333
+			}
+		);
+
+		add(credtis);
 
 		selectorguy = new FlxSprite(1095.75, 450.35);
 		selectorguy.loadGraphic("assets/images/title/selectorthingy.png");
@@ -71,10 +114,19 @@ class MainMenuState extends FlxState
 		add(selectorguy);
 
 		// Add version text
-		var gameVer:FlxText = new FlxText(12, 12, 0, "Tony's Crazy Platformer V1 \nCreated by TonyBallOhKnee", 40);
+		var gameVer:FlxText = new FlxText(-700, 12, 0, "Tony's Crazy Adventures Game V1 \nCreated by TonyBallOhKnee", 40);
 		gameVer.scrollFactor.set();
 		gameVer.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		gameVer.antialiasing = true;
+		
+		FlxTween.tween(gameVer, { x: 12, y: 12 }, 2, 
+			{ 
+				type:       ONESHOT,
+				ease:       FlxEase.circInOut,
+				startDelay: 0.83333333333333333333333333333333
+			}
+		);
+		
 		add(gameVer);
 
 		// Add YouTube button
