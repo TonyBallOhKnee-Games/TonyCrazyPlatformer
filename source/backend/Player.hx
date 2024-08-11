@@ -21,6 +21,7 @@ class Player extends FlxSprite
 		animation.addByPrefix('JumpInt', 'JumpInt', 24, true);
 		animation.addByPrefix('Jump', 'Jump0', 24, true);
 		animation.addByPrefix('Crouch', 'Crouch', 24, false);
+		animation.addByPrefix('Attack', 'Attack', 24, false);
 
 		scale.set(0.35, 0.35);
 		updateHitbox();
@@ -37,7 +38,10 @@ class Player extends FlxSprite
 		final left = FlxG.keys.anyPressed([LEFT, A]);
 		final right = FlxG.keys.anyPressed([RIGHT, D]);
 		final down = FlxG.keys.anyPressed([DOWN, S]);
+		final attack = FlxG.keys.anyPressed([SHIFT, ALT]);
 
+		
+		
 		if (left || right)
 		{
 			animation.play("Walk");
@@ -53,6 +57,7 @@ class Player extends FlxSprite
 			else
 				animation.play("Idle");
 		}
+		
 
 		if (left && right)
 		{
@@ -77,7 +82,6 @@ class Player extends FlxSprite
 		if (jump && isTouching(FLOOR))
 		{
 			velocity.y = -GRAVITY / 1.5;
-
 			animation.play("JumpInt");
 		}
 	}

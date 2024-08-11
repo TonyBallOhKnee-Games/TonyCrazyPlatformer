@@ -19,6 +19,14 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+
+		FlxG.sound.music.stop();
+		if (!FlxG.sound.music.playing) {
+
+			FlxG.sound.playMusic("assets/music/bigAss.wav", 0.5, true);
+
+		}
+		
 		bgColor = 0xffcccccc;
 
 		tonyPlayer = new Player(0, 0, 'Tony');
