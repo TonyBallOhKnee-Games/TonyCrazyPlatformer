@@ -22,13 +22,20 @@ class MainMenuState extends FlxState
 	public var logoShit:FlxSprite = new FlxSprite(-612.65, -59.2);
 	public var tonyDovark:FlxSprite = new FlxSprite(986.9, 347.45);
 
+	var tween:FlxTween;
 	override public function create():Void
 	{
 		super.create();
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
-		FlxG.sound.playMusic("assets/music/MainNew.wav", 0.5, true);
+		
+
+		if (!FlxG.sound.music.playing) {
+
+			FlxG.sound.playMusic("assets/music/MainNew.wav", 0.5, true);
+
+		}
 
 		// Add background image
 		var sky:FlxSprite = new FlxSprite(0, 0);
@@ -177,40 +184,40 @@ class MainMenuState extends FlxState
 			//selectorguy.x = 577.65;	
 			//selectorguy.y = 465.35;
 
-			FlxTween.tween(selectorguy, { x: 577.65, y: 465.35 }, 0.5, 
+			tween = FlxTween.tween(selectorguy, { x: 577.65, y: 465.35 }, 0.2, 
 				{ 
 					type:       ONESHOT,
-					ease:       FlxEase.circOut,
+					ease:       FlxEase.quadOut,
 				}
 			);
 			case 1:
 			//selectorguy.x = 715.85;	
 			//selectorguy.y = 529.15;
 
-			FlxTween.tween(selectorguy, { x: 715.85, y: 529.15 }, 0.5, 
+			tween = FlxTween.tween(selectorguy, { x: 715.85, y: 529.15 }, 0.2, 
 				{ 
 					type:       ONESHOT,
-					ease:       FlxEase.circOut,
+					ease:       FlxEase.quadOut,
 				}
 			);
 			case 2:
 			//selectorguy.x = 790.1;
 			//selectorguy.y = 581.15;
 
-			FlxTween.tween(selectorguy, { x: 790.1, y: 581.15 }, 0.5, 
+			tween = FlxTween.tween(selectorguy, { x: 790.1, y: 581.15 }, 0.2, 
 				{ 
 					type:       ONESHOT,
-					ease:       FlxEase.circOut,
+					ease:       FlxEase.quadOut,
 				}
 			);
 			case 3:
 			//selectorguy.x = 851.3;
 			//selectorguy.y = 639.05;	
-
-			FlxTween.tween(selectorguy, { x: 851.3, y: 639.05 }, 0.5, 
+			
+			tween = FlxTween.tween(selectorguy, { x: 851.3, y: 639.05 }, 0.2, 
 				{ 
 					type:       ONESHOT,
-					ease:       FlxEase.circOut,
+					ease:       FlxEase.quadOut,
 				}
 			);
 		}
