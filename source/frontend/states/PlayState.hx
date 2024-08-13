@@ -9,6 +9,7 @@ import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
 import frontend.states.substates.PauseSubState;
 
+
 class PlayState extends FlxState
 {
 	var levelBounds:FlxGroup;
@@ -52,5 +53,12 @@ class PlayState extends FlxState
 		}
 
 		FlxG.collide(tonyPlayer, levelBounds);
+
+		if (!FlxG.sound.music.playing) {
+
+			FlxG.sound.music.resume();
+		}
 	}
+
+		
 }

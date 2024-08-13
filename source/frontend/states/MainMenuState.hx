@@ -29,7 +29,6 @@ class MainMenuState extends FlxState
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
-		
 
 		if (!FlxG.sound.music.playing) {
 

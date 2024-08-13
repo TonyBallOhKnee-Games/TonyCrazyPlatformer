@@ -1,5 +1,10 @@
 package frontend.states;
 
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileCircle;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileSquare;
+import flixel.addons.transition.TransitionData;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -24,7 +29,7 @@ class WarningState extends FlxState
 		
 		FlxG.sound.music.stop();
 
-		FlxG.autoPause = false;
+		
 		this.bgColor = 0xff000000;
 		var warningBG:FlxSprite = new FlxSprite(0, 0);
 		warningBG.loadGraphic("assets/images/warning/Hey.png");

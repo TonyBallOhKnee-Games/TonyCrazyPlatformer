@@ -18,6 +18,8 @@ class BaloneyState extends FlxState
 	{
 		super.create();
 		
+		FlxG.autoPause = false;
+		
 		bgColor = 0xffcccccc;
 
 		dead.loadGraphic('assets/images/TonyBall.png', true);
