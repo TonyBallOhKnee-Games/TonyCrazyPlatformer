@@ -1,4 +1,4 @@
-# Tony's Crazy Platformer
+# Tony's Crazy Adventures - The Game
  The open source platformer game about Tony Dovark parkouring for free pizza.
 
 ![](https://github.com/TonyBallOhKnee-Games/TonyCrazyPlatformer/blob/main/exportAssets/github/PromoArt.png)
