@@ -17,9 +17,9 @@ class Player extends FlxSprite
 		loadGraphic('assets/images/characters/$name.png', true);
 		frames = FlxAtlasFrames.fromSparrow('assets/images/characters/$name.png', 'assets/images/characters/$name.xml');
 		animation.addByPrefix('Idle', 'Idle', 24, true);
-		animation.addByPrefix('Walk', 'Run', 24, true);
-		animation.addByPrefix('JumpInt', 'JumpInt', 24, true);
-		animation.addByPrefix('Jump', 'Jump0', 24, true);
+		animation.addByPrefix('Walk', 'Run', 24, false);
+		animation.addByPrefix('JumpInt', 'JumpInt', 24, false);
+		animation.addByPrefix('Jump', 'Jump0', 24, false);
 		animation.addByPrefix('Crouch', 'Crouch', 24, false);
 		animation.addByPrefix('Attack', 'Attack', 24, false);
 
@@ -32,6 +32,17 @@ class Player extends FlxSprite
 
 		acceleration.y = GRAVITY;
 	}
+	
+	function jumping()
+		{
+			final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
+			if (jump && isTouching(FLOOR))
+			{
+				velocity.y = -GRAVITY / 1.5;
+				animation.play("JumpInt");
+			}
+		}
+
 
 	function movement()
 	{
@@ -39,7 +50,7 @@ class Player extends FlxSprite
 		final right = FlxG.keys.anyPressed([RIGHT, D]);
 		final down = FlxG.keys.anyPressed([DOWN, S]);
 		final attack = FlxG.keys.anyPressed([SHIFT, ALT]);
-
+		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
 		
 		
 		if (left || right)
@@ -56,6 +67,8 @@ class Player extends FlxSprite
 			}
 			else
 				animation.play("Idle");
+
+			
 		}
 		
 
@@ -74,18 +87,12 @@ class Player extends FlxSprite
 			velocity.x = SPEED;
 			facing = RIGHT;
 		}
+
+		
 	}
 
-	function jumping()
-	{
-		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
-		if (jump && isTouching(FLOOR))
-		{
-			velocity.y = -GRAVITY / 1.5;
-			animation.play("JumpInt");
-		}
-	}
-
+	
+	
 	override function update(elapsed:Float)
 	{
 		jumping();

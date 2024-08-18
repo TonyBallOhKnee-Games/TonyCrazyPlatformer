@@ -8,14 +8,16 @@ import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
 import frontend.states.substates.PauseSubState;
-
+import flixel.FlxSprite;
+import flixel.graphics.frames.FlxAtlasFrames;
 
 class PlayState extends FlxState
 {
 	var levelBounds:FlxGroup;
 	var tonyPlayer:Player;
-	var hud:GameHud;
 
+	var hud:GameHud;
+	public var jimBanana:FlxSprite = new FlxSprite(404.65, 141.95);
 	override public function create():Void
 	{
 		super.create();
@@ -29,6 +31,15 @@ class PlayState extends FlxState
 		}
 		
 		bgColor = 0xffcccccc;
+
+		
+
+		jimBanana.loadGraphic('assets/images/characters/Jim.png', true);
+		jimBanana.frames = FlxAtlasFrames.fromSparrow('assets/images/characters/Jim.png', 'assets/images/characters/Jim.xml');
+		jimBanana.animation.addByPrefix('idleanim', 'Jim Idle', 24, true);
+		jimBanana.antialiasing = true;
+		jimBanana.animation.play("idleanim");
+		add(jimBanana);
 
 		tonyPlayer = new Player(0, 0, 'Tony');
 		tonyPlayer.antialiasing = true;
