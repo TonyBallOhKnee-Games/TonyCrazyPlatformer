@@ -4,21 +4,19 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import flixel.graphics.frames.FlxAtlasFrames;
 
-class DeadState extends FlxState
+class DeadState extends FlxTransitionableState
 {
-	
 	public var dead:FlxSprite = new FlxSprite(0, 0);
 	public var funnySong:Bool = false;
-	
+
 	override public function create():Void
 	{
 		super.create();
-		
-		
 
 		dead.loadGraphic('assets/images/deathScreen/Dead.png', true);
 		dead.frames = FlxAtlasFrames.fromSparrow('assets/images/deathScreen/Dead.png', 'assets/images/deathScreen/Dead.xml');
@@ -28,21 +26,17 @@ class DeadState extends FlxState
 		dead.animation.play("Dead");
 		add(dead);
 
-		
 		FlxG.sound.play("assets/sounds/deadTony.wav", 0.5, false);
-		
-	
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		
-		if (dead.animation.finished && !funnySong) {
 
+		if (dead.animation.finished && !funnySong)
+		{
 			funnySong = true;
 			FlxG.sound.playMusic("assets/music/gameOverLoop.wav", 0.3, true);
-
 		};
 
 		if (FlxG.keys.anyPressed([ENTER, SPACE]))
@@ -50,8 +44,8 @@ class DeadState extends FlxState
 			FlxG.switchState(new PlayState());
 		};
 		if (FlxG.keys.anyPressed([ESCAPE, BACKSPACE]))
-			{
-				FlxG.switchState(new MainMenuState());
-			};
+		{
+			FlxG.switchState(new MainMenuState());
+		};
 	}
 }

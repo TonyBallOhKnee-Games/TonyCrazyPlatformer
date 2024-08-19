@@ -1,216 +1,187 @@
 package frontend.states.substates;
 
 import flixel.FlxG;
-import flixel.sound.FlxSound;
-import flixel.FlxSubState;
-import flixel.ui.FlxButton;
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
+import flixel.FlxSubState;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.ui.FlxButton;
+import flixel.util.FlxColor;
 
 class PauseSubState extends FlxSubState
 {
-    private var fadeOverlay:FlxSprite;
-    private var gloria:FlxSprite;
-    private var tony:FlxSprite;
-    private var baloney:FlxSprite;
-    private var pauseText:FlxSprite;
-    private var title:FlxText;
-   
+	var fadeOverlay:FlxSprite;
+	var gloria:FlxSprite;
+	var tony:FlxSprite;
+	var baloney:FlxSprite;
+	var pauseText:FlxSprite;
+	var title:FlxText;
+	var pauseMusic:FlxSound;
+	var canPress:Bool = true;
+
 	override public function create():Void
 	{
 		super.create();
-	
+
 		FlxG.sound.music.pause();
-		
-        FlxG.sound.playMusic("assets/music/Paused.wav", 0.3, true);
-        
-        // Fade-Out Overlay
-        fadeOverlay = new FlxSprite();
-        fadeOverlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-        fadeOverlay.alpha = 0; // Start transparent
+		pauseMusic = new FlxSound().loadEmbedded("assets/music/Paused.wav");
+		pauseMusic.play(true, 0, 0);
+		pauseMusic.fadeIn(3, 0, 0.3);
 
-        FlxTween.tween(fadeOverlay, { alpha: 0.7 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT, 
-            ease: FlxEase.quadOut, 
-            //onComplete: resumeGame 
-        });
+		// Fade-Out Overlay
+		fadeOverlay = new FlxSprite();
+		fadeOverlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		fadeOverlay.alpha = 0; // Start transparent
 
-        add(fadeOverlay);
+		FlxTween.tween(fadeOverlay, {alpha: 0.7}, 0.8, {
+			ease: FlxEase.quadOut,
+			// onComplete: resumeGame
+		});
 
-        // Characters
-        gloria = new FlxSprite(239, 784.2);
-        gloria.loadGraphic("assets/images/Pause/gloria.png");
-        gloria.antialiasing = true;
-        gloria.alpha = 0;
-        FlxTween.tween(gloria, { x: 239, y: 19.2, alpha: 1 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circOut,
-            startDelay: 0.05
-        });
-        add(gloria);
+		add(fadeOverlay);
 
-        tony = new FlxSprite(1323.3, 168.05);
-        tony.loadGraphic("assets/images/Pause/tony.png");
-        tony.antialiasing = true;
-        tony.alpha = 0;
-        FlxTween.tween(tony, { x: 592.3, y: 168.05, alpha: 1 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circOut,
-            startDelay: 0.1
-        });
-        add(tony);
+		// Characters
+		gloria = new FlxSprite(239, 784.2);
+		gloria.loadGraphic("assets/images/Pause/gloria.png");
+		gloria.antialiasing = true;
+		gloria.alpha = 0;
+		FlxTween.tween(gloria, {x: 239, y: 19.2, alpha: 1}, 0.8, {ease: FlxEase.circOut, startDelay: 0.05});
+		add(gloria);
 
-        baloney = new FlxSprite(-697.65, 126.5);
-        baloney.loadGraphic("assets/images/Pause/baloney.png");
-        baloney.antialiasing = true;
-        baloney.alpha = 0;
-        FlxTween.tween(baloney, { x: -34.65, y: 126.5, alpha: 1 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circOut,
-            startDelay: 0.08
-        });
-        add(baloney);
+		tony = new FlxSprite(1323.3, 168.05);
+		tony.loadGraphic("assets/images/Pause/tony.png");
+		tony.antialiasing = true;
+		tony.alpha = 0;
+		FlxTween.tween(tony, {x: 592.3, y: 168.05, alpha: 1}, 0.8, {
+			ease: FlxEase.circOut,
+			startDelay: 0.1
+		});
+		add(tony);
 
-        // Pause Text
-        pauseText = new FlxSprite(396.55, -144.55);
-        pauseText.loadGraphic("assets/images/Pause/paused.png");
-        pauseText.antialiasing = true;
-        pauseText.alpha = 0;
-        FlxTween.tween(pauseText, { x: 396.55, y: 543.95, alpha: 1 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circOut,
-            startDelay: 0
-        });
-        add(pauseText);
+		baloney = new FlxSprite(-697.65, 126.5);
+		baloney.loadGraphic("assets/images/Pause/baloney.png");
+		baloney.antialiasing = true;
+		baloney.alpha = 0;
+		FlxTween.tween(baloney, {x: -34.65, y: 126.5, alpha: 1}, 0.8, {
+			ease: FlxEase.circOut,
+			startDelay: 0.08
+		});
+		add(baloney);
 
-        title = new FlxText(0, -200, 0, "Press Q to quit. \n Press ESC to unpause");
-        title.setFormat("assets/fonts/baloney.ttf", 32, FlxColor.WHITE, "center");
+		// Pause Text
+		pauseText = new FlxSprite(396.55, -144.55);
+		pauseText.loadGraphic("assets/images/Pause/paused.png");
+		pauseText.antialiasing = true;
+		pauseText.alpha = 0;
+		FlxTween.tween(pauseText, {x: 396.55, y: 543.95, alpha: 1}, 0.8, {
+			ease: FlxEase.circOut,
+			startDelay: 0
+		});
+		add(pauseText);
 
-        FlxTween.tween(title, { x: 0, y: 0 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circOut,
-                startDelay: 0
-            });
+		title = new FlxText(0, -200, 0, "Press Q to quit. \n Press ESC to unpause");
+		title.setFormat("assets/fonts/baloney.ttf", 32, FlxColor.WHITE, "center");
 
-        add(title);
+		FlxTween.tween(title, {x: 0, y: 0}, 0.8, {
+			ease: FlxEase.circOut,
+			startDelay: 0
+		});
 
-    }
+		add(title);
+	}
 
-    private function startFadeOut():Void
-    {
-        FlxTween.tween(fadeOverlay, { alpha: 0 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT, 
-            ease: FlxEase.quadOut, 
-            onComplete: resumeGame 
-        });
+	private function startFadeOut():Void
+	{
+		pauseMusic.fadeTween.cancel();
+		pauseMusic.fadeOut(0.8, 0);
+		FlxTween.tween(fadeOverlay, {alpha: 0}, 0.8, {
+			ease: FlxEase.quadOut,
+			onComplete: resumeGame
+		});
 
-        FlxTween.tween(pauseText, { x: 396.55, y: -144.55, alpha: 0 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circIn
-        });
+		FlxTween.tween(pauseText, {x: 396.55, y: -144.55, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        FlxTween.tween(baloney, { x: -697.65, y: 126.5, alpha: 0 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circIn
-        });
+		FlxTween.tween(baloney, {x: -697.65, y: 126.5, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        FlxTween.tween(tony, { x: 1323.3, y: 168.05, alpha: 0 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circIn
-        });
+		FlxTween.tween(tony, {x: 1323.3, y: 168.05, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        FlxTween.tween(gloria, { x: 239, y: 784.2, alpha: 0 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circIn
-        });
+		FlxTween.tween(gloria, {x: 239, y: 784.2, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        FlxTween.tween(title, { x: 0, y: -200 }, 0.8, 
-        { 
-            type: FlxTween.ONESHOT,
-            ease: FlxEase.circIn,
-            startDelay: 0
-        });
+		FlxTween.tween(title, {x: 0, y: -200}, 0.8, {
+			ease: FlxEase.circIn,
+			startDelay: 0
+		});
 
-        add(title);
-    }
+		add(title);
+	}
 
-    private function startFadeOutQuit():Void
-        {
-            FlxTween.tween(fadeOverlay, { alpha: 1 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT, 
-                ease: FlxEase.quadOut, 
-                onComplete: quittingTime 
-            });
-    
-            FlxTween.tween(pauseText, { x: 396.55, y: -144.55, alpha: 0 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circIn
-            });
-    
-            FlxTween.tween(baloney, { x: -697.65, y: 126.5, alpha: 0 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circIn
-            });
-    
-            FlxTween.tween(tony, { x: 1323.3, y: 168.05, alpha: 0 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circIn
-            });
-    
-            FlxTween.tween(gloria, { x: 239, y: 784.2, alpha: 0 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circIn
-            });
-            
-            FlxTween.tween(title, { x: 0, y: -200 }, 0.8, 
-            { 
-                type: FlxTween.ONESHOT,
-                ease: FlxEase.circIn,
-                startDelay: 0
-            });
-        }
+	private function startFadeOutQuit():Void
+	{
+		pauseMusic.fadeTween.cancel();
+		pauseMusic.fadeOut(0.8, 0);
+		FlxTween.tween(fadeOverlay, {alpha: 1}, 0.8, {
+			ease: FlxEase.quadOut,
+			onComplete: quittingTime
+		});
 
-    private function resumeGame(_:FlxTween):Void
-    {
-        FlxG.sound.music.resume();
-        close();
-    }
-    private function quittingTime(_:FlxTween):Void
-        {
-            //FlxG.sound.music.resume();
-            FlxG.switchState(new MainMenuState());
-        }
-    override public function update(elapsed:Float):Void
-    {
-        super.update(elapsed);
+		FlxTween.tween(pauseText, {x: 396.55, y: -144.55, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        if (FlxG.keys.justPressed.ESCAPE)
-        {
-            startFadeOut();
-        }
+		FlxTween.tween(baloney, {x: -697.65, y: 126.5, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
 
-        if (FlxG.keys.justPressed.Q)
-        {
-            startFadeOutQuit();
-        }
-    }
+		FlxTween.tween(tony, {x: 1323.3, y: 168.05, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
+
+		FlxTween.tween(gloria, {x: 239, y: 784.2, alpha: 0}, 0.8, {
+			ease: FlxEase.circIn
+		});
+
+		FlxTween.tween(title, {x: 0, y: -200}, 0.8, {
+			ease: FlxEase.circIn,
+			startDelay: 0
+		});
+	}
+
+	private function resumeGame(_:FlxTween):Void
+	{
+		FlxG.sound.music.resume();
+		close();
+	}
+
+	private function quittingTime(_:FlxTween):Void
+	{
+		// FlxG.sound.music.resume();
+		FlxG.switchState(new MainMenuState());
+	}
+
+	override public function update(elapsed:Float):Void
+	{
+		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.ESCAPE && canPress)
+		{
+			canPress = false;
+			startFadeOut();
+		}
+
+		if (FlxG.keys.justPressed.Q && canPress)
+		{
+			canPress = false;
+			startFadeOutQuit();
+		}
+	}
 }

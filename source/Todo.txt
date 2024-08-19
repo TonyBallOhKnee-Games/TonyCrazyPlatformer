@@ -1,4 +1,3 @@
-CRITICAL: IMPLEMENT STORY!!
 CRITICAL: Rework the death graphics
 CRITICAL: Rework the hud
 TODO: Implement load game logic

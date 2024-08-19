@@ -1,13 +1,14 @@
 package frontend.states;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
 
-class OptionsState extends FlxState
+class OptionsState extends FlxTransitionableState
 {
 	override public function create():Void
 	{
@@ -17,7 +18,7 @@ class OptionsState extends FlxState
 		background.loadGraphic("assets/images/optionsBG.png");
 		background.antialiasing = true;
 		add(background);
-		
+
 		// Add title text
 		var title:FlxText = new FlxText(0, FlxG.height / 4, FlxG.width, "Options");
 		title.setFormat(null, 32, FlxColor.WHITE, "center");

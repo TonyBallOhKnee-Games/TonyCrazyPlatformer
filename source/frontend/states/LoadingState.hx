@@ -1,70 +1,71 @@
 package;
 
-import flixel.FlxState;
-import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
+import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.system.FlxAssets;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
 
-class LoadingState extends FlxState
+class LoadingState extends FlxTransitionableState
 {
-    private var loadingText:FlxText;
-    private var loadingBar:FlxSprite;
-    private var loadingProgress:Float = 0;
+	private var loadingText:FlxText;
+	private var loadingBar:FlxSprite;
+	private var loadingProgress:Float = 0;
 
-    override public function create():Void
-    {
-        super.create();
-        
-        // Set background color
-        FlxG.bgColor = FlxColor.BLACK;
+	override public function create():Void
+	{
+		super.create();
 
-        // Create and add loading text
-        loadingText = new FlxText(0, FlxG.height / 2 - 10, FlxG.width, "Loading...");
-        loadingText.setFormat(null, 16, FlxColor.WHITE, "center");
-        add(loadingText);
+		// Set background color
+		bgColor = FlxColor.BLACK;
 
-        // Create and add loading bar
-        loadingBar = new FlxSprite(FlxG.width / 4, FlxG.height / 2 + 20);
-        loadingBar.makeGraphic(FlxG.width / 2, 10, FlxColor.WHITE);
-        loadingBar.scrollFactor.set();
-        loadingBar.scale.x = 0;
-        add(loadingBar);
+		// Create and add loading text
+		loadingText = new FlxText(0, FlxG.height / 2 - 10, FlxG.width, "Loading...");
+		loadingText.setFormat(null, 16, FlxColor.WHITE, "center");
+		add(loadingText);
 
-        // Start loading assets
-        loadAssets();
-    }
+		// Create and add loading bar
+		loadingBar = new FlxSprite(FlxG.width / 4, FlxG.height / 2 + 20);
+		loadingBar.makeGraphic(FlxG.width / 2, 10, FlxColor.WHITE);
+		loadingBar.scrollFactor.set();
+		loadingBar.scale.x = 0;
+		add(loadingBar);
 
-    private function loadAssets():Void
-    {
-        // Load images
-        FlxG.assets.loadGraphic("assets/images/someImage.png", false, true, 100, 100);
-        FlxG.assets.loadGraphic("assets/images/anotherImage.png", false, true, 100, 100);
+		// Start loading assets
+		loadAssets();
+	}
 
-        // Load sounds
-        FlxG.assets.loadSound("assets/sounds/someSound.mp3");
-        FlxG.assets.loadSound("assets/sounds/anotherSound.mp3");
+	private function loadAssets():Void
+	{
+		// Load images
+		FlxG.assets.loadGraphic("assets/images/someImage.png", false, true, 100, 100);
+		FlxG.assets.loadGraphic("assets/images/anotherImage.png", false, true, 100, 100);
 
-        // Preload the assets
-        FlxG.assets.onLoadComplete = onAssetsLoaded;
-    }
+		// Load sounds
+		FlxG.assets.loadSound("assets/sounds/someSound.mp3");
+		FlxG.assets.loadSound("assets/sounds/anotherSound.mp3");
 
-    private function onAssetsLoaded():Void
-    {
-        // Transition to the next state when loading is complete
-        FlxG.switchState(new PlayState());
-    }
+		// Preload the assets
+		FlxG.assets.onLoadComplete = onAssetsLoaded;
+	}
 
-    override public function update(elapsed:Float):Void
-    {
-        super.update(elapsed);
+	private function onAssetsLoaded():Void
+	{
+		// Transition to the next state when loading is complete
+		FlxG.switchState(new PlayState());
+	}
 
-        // Update loading progress
-        loadingProgress = FlxG.assets.progress;
-        loadingBar.scale.x = loadingProgress;
-        
-        // Optionally, you can display the percentage of loading
-        loadingText.text = "Loading... " + Math.round(loadingProgress * 100) + "%";
-    }
+	override public function update(elapsed:Float):Void
+	{
+		super.update(elapsed);
+
+		// Update loading progress
+		loadingProgress = FlxG.assets.progress;
+		loadingBar.scale.x = loadingProgress;
+
+		// Optionally, you can display the percentage of loading
+		loadingText.text = "Loading... " + Math.round(loadingProgress * 100) + "%";
+	}
 }

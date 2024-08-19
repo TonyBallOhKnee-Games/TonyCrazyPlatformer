@@ -1,13 +1,14 @@
 package frontend.states;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
 
-class CreditsState extends FlxState
+class CreditsState extends FlxTransitionableState
 {
 	override public function create():Void
 	{
@@ -17,15 +18,21 @@ class CreditsState extends FlxState
 		background.loadGraphic("assets/images/optionsBG.png");
 		background.antialiasing = true;
 		add(background);
-		
+
 		// Add title text
 		var title:FlxText = new FlxText(0, FlxG.height / 4, FlxG.width, "Credits");
 		title.setFormat(null, 32, FlxColor.WHITE, "center");
 		add(title);
-
-
 	}
 
+	override public function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			goBack();
+		}
+	}
 
 	private function goBack():Void
 	{

@@ -1,5 +1,6 @@
 package frontend.states;
 
+import backend.GraphricTransTileTransformDiamond.GraphicTransTileTransformDiamond;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -37,14 +38,18 @@ class MainMenuState extends FlxTransitionableState
 		FlxTransitionableState.defaultTransIn = new TransitionData();
 		FlxTransitionableState.defaultTransOut = new TransitionData();
 
-		var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
-		diamond.persist = true;
-		diamond.destroyOnNoUse = false;
+		var transformDiamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileTransformDiamond);
+		transformDiamond.persist = true;
+		transformDiamond.destroyOnNoUse = false;
 
-		FlxTransitionableState.defaultTransIn.tileData = {asset: diamond, width: 98, height: 98};
-		FlxTransitionableState.defaultTransOut.tileData = {asset: diamond, width: 98, height: 98};
+		FlxTransitionableState.defaultTransIn.tileData = {asset: transformDiamond, width: 32, height: 32};
+		FlxTransitionableState.defaultTransOut.tileData = {asset: transformDiamond, width: 32, height: 32};
+		FlxTransitionableState.defaultTransIn.color = FlxColor.BLACK;
+		FlxTransitionableState.defaultTransOut.color = FlxColor.BLACK;
+		FlxTransitionableState.defaultTransIn.type = TransitionType.TILES;
+		FlxTransitionableState.defaultTransOut.type = TransitionType.TILES;
 
-		// Of course, this state has already been constructed, so we need to set a transOut value for it right now:
+		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
