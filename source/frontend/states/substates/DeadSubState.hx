@@ -49,6 +49,7 @@ class DeadSubState extends FlxSubState
 		if (FlxG.keys.anyPressed([ESCAPE, BACKSPACE]))
 		{
 			close();
+			FlxG.sound.music.stop();
 			FlxG.switchState(new MainMenuState());
 		};
 	}
