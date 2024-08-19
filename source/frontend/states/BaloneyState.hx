@@ -7,8 +7,9 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.addons.transition.FlxTransitionableState;
 
-class BaloneyState extends FlxState
+class BaloneyState extends FlxTransitionableState
 {
 	
 	public var dead:FlxSprite = new FlxSprite(0, -120.2);

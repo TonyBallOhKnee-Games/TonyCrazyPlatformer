@@ -19,7 +19,7 @@ import flixel.math.FlxRect;
 
 
 
-class WarningState extends FlxState
+class WarningState extends FlxTransitionableState
 {
 	public static var curSelected:Int = 0; // Selected menu option (0: Start, 1: Load, 2: Options)
 
