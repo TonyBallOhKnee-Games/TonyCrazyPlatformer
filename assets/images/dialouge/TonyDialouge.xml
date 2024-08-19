@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="TonyDialouge.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="TonyBwomp0000" x="10" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0001" x="10" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0002" x="628" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0003" x="628" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0004" x="1246" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0005" x="1246" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0006" x="1864" y="10" width="568" height="572"/>
+	<SubTexture name="TonyBwomp0007" x="1864" y="10" width="568" height="572"/>
+	<SubTexture name="TonyExcite0000" x="2482" y="10" width="567" height="576"/>
+	<SubTexture name="TonyExcite0001" x="2482" y="10" width="567" height="576"/>
+	<SubTexture name="TonyExcite0002" x="3099" y="10" width="567" height="576"/>
+	<SubTexture name="TonyExcite0003" x="3099" y="10" width="567" height="576"/>
+	<SubTexture name="TonyExcite0004" x="10" y="636" width="567" height="576"/>
+	<SubTexture name="TonyExcite0005" x="10" y="636" width="567" height="576"/>
+	<SubTexture name="TonyExcite0006" x="627" y="636" width="567" height="576"/>
+	<SubTexture name="TonyExcite0007" x="627" y="636" width="567" height="576"/>
+	<SubTexture name="TonyTF0000" x="1244" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0001" x="1244" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0002" x="1959" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0003" x="1959" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0004" x="2674" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0005" x="2674" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0006" x="3389" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTF0007" x="3389" y="636" width="665" height="578"/>
+	<SubTexture name="TonyTalk0000" x="10" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0001" x="10" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0002" x="627" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0003" x="627" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0004" x="1244" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0005" x="1244" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0006" x="1861" y="1264" width="567" height="576"/>
+	<SubTexture name="TonyTalk0007" x="1861" y="1264" width="567" height="576"/>
+</TextureAtlas>
