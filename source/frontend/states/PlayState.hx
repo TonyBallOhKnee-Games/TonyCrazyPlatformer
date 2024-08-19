@@ -12,6 +12,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
 import frontend.states.substates.PauseSubState;
+import frontend.states.substates.DeadSubState;
 
 class PlayState extends FlxTransitionableState
 {
@@ -60,7 +61,7 @@ class PlayState extends FlxTransitionableState
 		}
 		if (FlxG.keys.justPressed.R)
 		{
-			FlxG.switchState(new DeadState());
+			openSubState(new DeadSubState());
 		}
 
 		FlxG.collide(tonyPlayer, levelBounds);
