@@ -4,6 +4,11 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.TransitionData;
+import flixel.addons.ui.FlxUIState;
+import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -13,7 +18,7 @@ import flixel.util.FlxColor;
 import openfl.Lib;
 import openfl.net.URLRequest;
 
-class MainMenuState extends FlxState
+class MainMenuState extends FlxTransitionableState
 {
 	public static var curSelected:Int = 0; // Selected menu option (0: Start, 1: Load, 2: Options)
 
@@ -28,6 +33,19 @@ class MainMenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+
+		FlxTransitionableState.defaultTransIn = new TransitionData();
+		FlxTransitionableState.defaultTransOut = new TransitionData();
+
+		var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+		diamond.persist = true;
+		diamond.destroyOnNoUse = false;
+
+		FlxTransitionableState.defaultTransIn.tileData = {asset: diamond, width: 98, height: 98};
+		FlxTransitionableState.defaultTransOut.tileData = {asset: diamond, width: 98, height: 98};
+
+		// Of course, this state has already been constructed, so we need to set a transOut value for it right now:
+		transOut = FlxTransitionableState.defaultTransOut;
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
