@@ -1,16 +1,15 @@
 package frontend.states;
 
-import backend.GraphricTransTileTransformDiamond.GraphicTransTileTransformDiamond;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
 import flixel.addons.ui.FlxUIState;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -37,17 +36,14 @@ class MainMenuState extends FlxTransitionableState
 
 		FlxTransitionableState.defaultTransIn = new TransitionData();
 		FlxTransitionableState.defaultTransOut = new TransitionData();
-
-		var transformDiamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileTransformDiamond);
-		transformDiamond.persist = true;
-		transformDiamond.destroyOnNoUse = false;
-
-		FlxTransitionableState.defaultTransIn.tileData = {asset: transformDiamond, width: 32, height: 32};
-		FlxTransitionableState.defaultTransOut.tileData = {asset: transformDiamond, width: 32, height: 32};
 		FlxTransitionableState.defaultTransIn.color = FlxColor.BLACK;
 		FlxTransitionableState.defaultTransOut.color = FlxColor.BLACK;
-		FlxTransitionableState.defaultTransIn.type = TransitionType.TILES;
-		FlxTransitionableState.defaultTransOut.type = TransitionType.TILES;
+		FlxTransitionableState.defaultTransIn.type = TransitionType.FADE;
+		FlxTransitionableState.defaultTransOut.type = TransitionType.FADE;
+		FlxTransitionableState.defaultTransIn.direction = new FlxPoint(-1, -1); // A swipe effect
+		FlxTransitionableState.defaultTransOut.direction = new FlxPoint(1, 1);
+		FlxTransitionableState.defaultTransIn.duration = 0.6;
+		FlxTransitionableState.defaultTransOut.duration = 0.6;
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
