@@ -28,7 +28,7 @@ class PauseSubState extends FlxSubState
 		FlxG.sound.music.pause();
 		pauseMusic = new FlxSound().loadEmbedded("assets/music/Paused.wav");
 		pauseMusic.play(true, 0, 0);
-		pauseMusic.fadeIn(3, 0, 0.3);
+		pauseMusic.fadeIn(3, 0, 0.5);
 
 		// Fade-Out Overlay
 		fadeOverlay = new FlxSprite();
