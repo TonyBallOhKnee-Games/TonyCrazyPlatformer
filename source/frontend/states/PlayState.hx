@@ -1,7 +1,8 @@
 package frontend.states;
 
 import backend.GameHud;
-import backend.Player;
+import backend.ingame.objects.NPC;
+import backend.ingame.objects.Player;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -19,7 +20,7 @@ class PlayState extends FlxTransitionableState
 
 	var hud:GameHud;
 
-	public var jimBanana:FlxSprite = new FlxSprite(404.65, 141.95);
+	public var jimBanana:NPC = new NPC(404, 0);
 
 	override public function create():Void
 	{
@@ -33,11 +34,11 @@ class PlayState extends FlxTransitionableState
 
 		bgColor = 0xffcccccc;
 
-		jimBanana.loadGraphic('assets/images/characters/Jim.png', true);
-		jimBanana.frames = FlxAtlasFrames.fromSparrow('assets/images/characters/Jim.png', 'assets/images/characters/Jim.xml');
-		jimBanana.animation.addByPrefix('idleanim', 'Jim Idle', 24, true);
-		jimBanana.antialiasing = true;
-		jimBanana.animation.play("idleanim");
+		jimBanana.load(); // Jim has his defaults set already, lol
+		jimBanana.scale.x = 0.4;
+		jimBanana.scale.y = 0.4;
+		jimBanana.updateHitbox();
+		jimBanana.animation.play('idleanim');
 		add(jimBanana);
 
 		tonyPlayer = new Player(0, 0, 'Tony');

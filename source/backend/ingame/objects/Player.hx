@@ -1,20 +1,20 @@
-package backend;
+package backend.ingame.objects;
 
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
-class Player extends FlxSprite
+class Player extends FlxSprite // not overriding PsysicsObject, I was too lazy xd
 {
-	final SPEED:Int = 450; //450 is default
-	final GRAVITY:Int = 600; //600 is deafault
+	final SPEED:Int = 450; // 450 is default
+	final GRAVITY:Int = 600; // 600 is deafault
 
 	public function new(xPos:Int = 0, yPos:Int = 0, name:String)
 	{
 		super(xPos, yPos);
 
-		loadGraphic('assets/images/characters/$name.png', true);
+		loadGraphic('assets/images/characters/$name.png');
 		frames = FlxAtlasFrames.fromSparrow('assets/images/characters/$name.png', 'assets/images/characters/$name.xml');
 		animation.addByPrefix('Idle', 'Idle', 24, true);
 		animation.addByPrefix('Walk', 'Run', 24, false);
@@ -32,17 +32,16 @@ class Player extends FlxSprite
 
 		acceleration.y = GRAVITY;
 	}
-	
-	function jumping()
-		{
-			final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
-			if (jump && isTouching(FLOOR))
-			{
-				velocity.y = -GRAVITY / 1.5;
-				animation.play("JumpInt");
-			}
-		}
 
+	function jumping()
+	{
+		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
+		if (jump && isTouching(FLOOR))
+		{
+			velocity.y = -GRAVITY / 1.5;
+			animation.play("JumpInt");
+		}
+	}
 
 	function movement()
 	{
@@ -51,8 +50,7 @@ class Player extends FlxSprite
 		final down = FlxG.keys.anyPressed([DOWN, S]);
 		final attack = FlxG.keys.anyPressed([SHIFT, ALT]);
 		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
-		
-		
+
 		if (left || right)
 		{
 			animation.play("Walk");
@@ -67,10 +65,7 @@ class Player extends FlxSprite
 			}
 			else
 				animation.play("Idle");
-
-			
 		}
-		
 
 		if (left && right)
 		{
@@ -87,12 +82,8 @@ class Player extends FlxSprite
 			velocity.x = SPEED;
 			facing = RIGHT;
 		}
-
-		
 	}
 
-	
-	
 	override function update(elapsed:Float)
 	{
 		jumping();
