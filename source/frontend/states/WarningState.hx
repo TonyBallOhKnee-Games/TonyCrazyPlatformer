@@ -37,8 +37,8 @@ class WarningState extends FlxTransitionableState
 		FlxTransitionableState.defaultTransOut.type = TransitionType.FADE;
 		FlxTransitionableState.defaultTransIn.direction = new FlxPoint(-1, -1); // A swipe effect
 		FlxTransitionableState.defaultTransOut.direction = new FlxPoint(1, 1);
-		FlxTransitionableState.defaultTransIn.duration = 0.1;
-		FlxTransitionableState.defaultTransOut.duration = 0.1;
+		FlxTransitionableState.defaultTransIn.duration = 0.6;
+		FlxTransitionableState.defaultTransOut.duration = 0.6;
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
