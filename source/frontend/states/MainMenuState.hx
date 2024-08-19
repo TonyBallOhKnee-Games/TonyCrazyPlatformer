@@ -34,7 +34,18 @@ class MainMenuState extends FlxTransitionableState
 	{
 		super.create();
 
-
+		FlxTransitionableState.defaultTransIn = new TransitionData();
+		FlxTransitionableState.defaultTransOut = new TransitionData();
+		FlxTransitionableState.defaultTransIn.color = FlxColor.BLACK;
+		FlxTransitionableState.defaultTransOut.color = FlxColor.BLACK;
+		FlxTransitionableState.defaultTransIn.type = TransitionType.FADE;
+		FlxTransitionableState.defaultTransOut.type = TransitionType.FADE;
+		FlxTransitionableState.defaultTransIn.direction = new FlxPoint(-1, -1); // A swipe effect
+		FlxTransitionableState.defaultTransOut.direction = new FlxPoint(1, 1);
+		FlxTransitionableState.defaultTransIn.duration = 0.6;
+		FlxTransitionableState.defaultTransOut.duration = 0.6;
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
@@ -66,51 +77,42 @@ class MainMenuState extends FlxTransitionableState
 		var start:FlxSprite = new FlxSprite(1430.6, 465.35);
 		start.loadGraphic("assets/images/title/new game.png");
 		start.antialiasing = true;
-
 		FlxTween.tween(start, {x: 374.95, y: 465.35}, 2, {
 			ease: FlxEase.circInOut,
 			startDelay: 0.83333333333333333333333333333333
 		});
-
 		add(start);
 
 		var load:FlxSprite = new FlxSprite(1424.4, 523.25);
 		load.loadGraphic("assets/images/title/loadgame.png");
 		load.antialiasing = true;
-
 		FlxTween.tween(load, {x: 493.75, y: 523.25}, 2, {
 			ease: FlxEase.circInOut,
 			startDelay: 0.83333333333333333333333333333333
 		});
-
 		add(load);
 
 		var options:FlxSprite = new FlxSprite(1456.3, 581.15);
 		options.loadGraphic("assets/images/title/options.png");
 		options.antialiasing = true;
-
 		FlxTween.tween(options, {x: 637, y: 581.15}, 2, {
 			ease: FlxEase.circInOut,
 			startDelay: 0.83333333333333333333333333333333
 		});
-
 		add(options);
 
 		var credtis:FlxSprite = new FlxSprite(1462.45, 639.05);
 		credtis.loadGraphic("assets/images/title/credits.png");
 		credtis.antialiasing = true;
-
 		FlxTween.tween(credtis, {x: 709.75, y: 639.05}, 2, {
 			ease: FlxEase.circInOut,
 			startDelay: 0.83333333333333333333333333333333
 		});
-
 		add(credtis);
 
 		selectorguy = new FlxSprite(1290.65, 465.35);
 		selectorguy.loadGraphic("assets/images/title/unused/selectorthingy.png");
 		selectorguy.antialiasing = true;
-
 		FlxTween.tween(selectorguy, {x: 577.65, y: 465.35}, 2, {
 			ease: FlxEase.quartOut,
 			startDelay: 2,
@@ -126,17 +128,11 @@ class MainMenuState extends FlxTransitionableState
 		gameVer.scrollFactor.set();
 		gameVer.setFormat("assets/fonts/baloney.ttf", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		gameVer.antialiasing = true;
-
 		FlxTween.tween(gameVer, {x: 12, y: 12}, 2, {
 			ease: FlxEase.circInOut,
 			startDelay: 1.3
 		});
-
 		add(gameVer);
-
-		// Add YouTube button
-		var youtubeButton:FlxButton = new FlxButton(0, 700, "YouTube", openYouTube);
-		add(youtubeButton);
 	}
 
 	private function startGame():Void

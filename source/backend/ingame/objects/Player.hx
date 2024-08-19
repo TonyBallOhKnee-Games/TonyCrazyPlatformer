@@ -5,7 +5,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
-class Player extends FlxSprite // not overriding PsysicsObject, I was too lazy xd
+class Player extends PhysicsObject
 {
 	final SPEED:Int = 450; // 450 is default
 	final GRAVITY:Int = 600; // 600 is deafault
@@ -35,12 +35,9 @@ class Player extends FlxSprite // not overriding PsysicsObject, I was too lazy x
 
 	function jumping()
 	{
-		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
-		if (jump && isTouching(FLOOR))
-		{
+		final jump =;
+		if (FlxG.keys.anyPressed([UP, SPACE, W]))
 			velocity.y = -GRAVITY / 1.5;
-			animation.play("JumpInt");
-		}
 	}
 
 	function movement()

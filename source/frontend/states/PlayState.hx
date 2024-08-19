@@ -5,23 +5,24 @@ import backend.ingame.objects.NPC;
 import backend.ingame.objects.Player;
 import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
-import frontend.states.substates.PauseSubState;
 import frontend.states.substates.DeadSubState;
+import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxTransitionableState
 {
 	var levelBounds:FlxGroup;
-	var tonyPlayer:Player;
-
 	var hud:GameHud;
 
+	public var collisionObjects:Array<FlxObject> = [];
 	public var jimBanana:NPC = new NPC(404, 0);
+	public var tonyPlayer:Player;
 
 	override public function create():Void
 	{

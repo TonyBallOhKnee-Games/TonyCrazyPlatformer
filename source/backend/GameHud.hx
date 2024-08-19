@@ -8,10 +8,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
-class GameHud extends FlxTypedGroup<FlxSprite>
+class GameHud extends FlxTypedGroup<FlxObject>
 {
-	
-	
 	var scoreText:FlxText;
 	var score = 0;
 
@@ -19,7 +17,7 @@ class GameHud extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
-		var coolness:FlxSprite = new FlxSprite(0,0);
+		var coolness:FlxSprite = new FlxSprite(0, 0);
 	}
 
 	public function incrementScore()
