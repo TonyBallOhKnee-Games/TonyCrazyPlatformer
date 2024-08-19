@@ -34,19 +34,7 @@ class MainMenuState extends FlxTransitionableState
 	{
 		super.create();
 
-		FlxTransitionableState.defaultTransIn = new TransitionData();
-		FlxTransitionableState.defaultTransOut = new TransitionData();
-		FlxTransitionableState.defaultTransIn.color = FlxColor.BLACK;
-		FlxTransitionableState.defaultTransOut.color = FlxColor.BLACK;
-		FlxTransitionableState.defaultTransIn.type = TransitionType.FADE;
-		FlxTransitionableState.defaultTransOut.type = TransitionType.FADE;
-		FlxTransitionableState.defaultTransIn.direction = new FlxPoint(-1, -1); // A swipe effect
-		FlxTransitionableState.defaultTransOut.direction = new FlxPoint(1, 1);
-		FlxTransitionableState.defaultTransIn.duration = 0.6;
-		FlxTransitionableState.defaultTransOut.duration = 0.6;
 
-		transIn = FlxTransitionableState.defaultTransIn;
-		transOut = FlxTransitionableState.defaultTransOut;
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
 
