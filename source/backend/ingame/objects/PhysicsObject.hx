@@ -18,15 +18,15 @@ class PhysicsObject extends FlxSprite
 	{
 		super(X, Y, SimpleGraphic);
 		// Initializing Physics
-		_finalGravity = gravity * 100;
-		acceleration.y = gravity;
+		_finalGravity = gravity * 100; // make the gravity variable more user-friendly
+		acceleration.y = _finalGravity;
 	}
 
 	public function physTick()
 	{
 		if (isTouching(FLOOR))
 		{
-			velocity.y = -gravity / 1.5;
+			velocity.y = -_finalGravity / 1.5;
 		}
 		// FlxObject.separate(this, UNFINISHED); -- Unfinished feature. I'll do it another day.
 	}
