@@ -1,15 +1,17 @@
 package backend.ingame.objects;
 
 import backend.Common.AnimData;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class NPC extends PhysicsObject
 {
-	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset)
+	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>)
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y, SimpleGraphic, colliders, NPC);
 	}
 
 	public static final defAnimData:Array<AnimData> = [

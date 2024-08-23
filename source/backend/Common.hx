@@ -10,4 +10,14 @@ typedef AnimData =
 	var flipY:Bool;
 }
 
+enum ColliderType
+{
+	FLOOR;
+	WALL;
+	// PUSHABLE; -- Later.
+	CONTROLLER;
+	NPC;
+	NONE;
+}
+
 class Common {}

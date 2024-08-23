@@ -1,18 +1,25 @@
 package backend.ingame.objects;
 
+import backend.Common.ColliderType;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class Player extends PhysicsObject
 {
-	final SPEED:Int = 450; // 450 is default
-	final GRAVITY:Int = 600; // 600 is deafault
+	public var speed:Int = 450;
 
-	public function new(xPos:Int = 0, yPos:Int = 0, name:String)
+	var _left = false;
+	var _right = false;
+	var _down = false;
+	var _jump = false;
+
+	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>)
 	{
-		super(xPos, yPos);
+		super(xPos, yPos, name, colliders, CONTROLLER);
 
 		loadGraphic('assets/images/characters/$name.png');
 		frames = FlxAtlasFrames.fromSparrow('assets/images/characters/$name.png', 'assets/images/characters/$name.xml');
@@ -25,36 +32,33 @@ class Player extends PhysicsObject
 
 		scale.set(0.35, 0.35);
 		updateHitbox();
-		drag.x = SPEED * 4;
+		drag.x = speed * 4;
 
 		setFacingFlip(LEFT, false, false);
 		setFacingFlip(RIGHT, true, false);
-
-		acceleration.y = GRAVITY;
 	}
 
-	function jumping()
+	override public function physTick()
 	{
-		final jump =;
-		if (FlxG.keys.anyPressed([UP, SPACE, W]))
-			velocity.y = -GRAVITY / 1.5;
+		super.physTick();
+		_left = FlxG.keys.anyPressed([LEFT, A]);
+		_right = FlxG.keys.anyPressed([RIGHT, D]);
+		_down = FlxG.keys.anyPressed([DOWN, S]);
+		_jump = FlxG.keys.anyPressed([UP, SPACE, W]);
+		if (_jump && onFloor)
+			velocity.y = -_finalGravity / 1.5;
+		movement();
 	}
 
 	function movement()
 	{
-		final left = FlxG.keys.anyPressed([LEFT, A]);
-		final right = FlxG.keys.anyPressed([RIGHT, D]);
-		final down = FlxG.keys.anyPressed([DOWN, S]);
-		final attack = FlxG.keys.anyPressed([SHIFT, ALT]);
-		final jump = FlxG.keys.anyPressed([UP, SPACE, W]);
-
-		if (left || right)
+		if (_left || _right)
 		{
 			animation.play("Walk");
 		}
 		else
 		{
-			if (down)
+			if (_down)
 			{
 				if (animation.finished && animation.name == 'Crouch') {} // Why did this logic take 5 whole minutes
 				else
@@ -64,27 +68,25 @@ class Player extends PhysicsObject
 				animation.play("Idle");
 		}
 
-		if (left && right)
+		if (_left && _right)
 		{
 			velocity.x = 0;
 			animation.play("Idle");
 		}
-		else if (left)
+		else if (_left)
 		{
-			velocity.x = -SPEED;
+			velocity.x = -speed;
 			facing = LEFT;
 		}
-		else if (right)
+		else if (_right)
 		{
-			velocity.x = SPEED;
+			velocity.x = speed;
 			facing = RIGHT;
 		}
 	}
 
 	override function update(elapsed:Float)
 	{
-		jumping();
 		super.update(elapsed);
-		movement();
 	}
 }

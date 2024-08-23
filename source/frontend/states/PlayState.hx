@@ -2,6 +2,7 @@ package frontend.states;
 
 import backend.GameHud;
 import backend.ingame.objects.NPC;
+import backend.ingame.objects.PhysicsObject;
 import backend.ingame.objects.Player;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -12,17 +13,20 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
+import flixel.util.FlxColor;
 import frontend.states.substates.DeadSubState;
 import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxTransitionableState
 {
 	var levelBounds:FlxGroup;
-	var hud:GameHud;
 
-	public var collisionObjects:Array<FlxObject> = [];
-	public var jimBanana:NPC = new NPC(404, 0);
+	public var hud:GameHud;
+
+	public var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
+	public var jimBanana:NPC;
 	public var tonyPlayer:Player;
+	public var floor:PhysicsObject;
 
 	override public function create():Void
 	{
@@ -36,6 +40,12 @@ class PlayState extends FlxTransitionableState
 
 		bgColor = 0xffcccccc;
 
+		floor = new PhysicsObject(0, 550, '', collisionObjects, FLOOR);
+		floor.makeGraphic(1280, 300, FlxColor.BLACK);
+		collisionObjects.add(floor);
+		add(floor);
+
+		jimBanana = new NPC(404, 0, '', collisionObjects);
 		jimBanana.load(); // Jim has his defaults set already, lol
 		jimBanana.scale.x = 0.4;
 		jimBanana.scale.y = 0.4;
@@ -43,7 +53,7 @@ class PlayState extends FlxTransitionableState
 		jimBanana.animation.play('idleanim');
 		add(jimBanana);
 
-		tonyPlayer = new Player(0, 0, 'Tony');
+		tonyPlayer = new Player(0, 0, 'Tony', collisionObjects);
 		tonyPlayer.antialiasing = true;
 		add(tonyPlayer);
 
