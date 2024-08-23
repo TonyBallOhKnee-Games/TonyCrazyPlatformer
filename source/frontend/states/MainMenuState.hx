@@ -202,10 +202,12 @@ class MainMenuState extends FlxTransitionableState
 		{
 			if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W)
 			{
+				FlxG.sound.play("assets/sounds/selectinSoung.wav", 0.5, false);
 				changeItem(-1);
 			}
 			if (FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S)
 			{
+				FlxG.sound.play("assets/sounds/selectinSoung.wav", 0.5, false);
 				changeItem(1);
 			}
 		}
