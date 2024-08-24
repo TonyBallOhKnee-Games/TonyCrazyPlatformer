@@ -3,5 +3,5 @@ CRITICAL: Add Dynamic Level/World loading logic(dreading)
 CRITICAL: Saving and Loading system
 TODO: Add Tony's jump and fall animations
 TODO: Results Screen Animations (for Baloney)
-TODO: Loading Screen
+TODO: Loading Screen (Working on)
 TODO: Get the Cutscene into the Game
