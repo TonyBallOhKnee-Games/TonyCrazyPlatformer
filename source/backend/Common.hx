@@ -20,4 +20,14 @@ enum ColliderType
 	NONE;
 }
 
-class Common {}
+class Common
+{
+	public static function sign(value:Float):Int
+	{
+		if (value > 0)
+			return 1;
+		if (value < 0)
+			return -1;
+		return 0;
+	}
+}

@@ -19,26 +19,25 @@ import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxTransitionableState
 {
-	var levelBounds:FlxGroup;
-
 	public var hud:GameHud;
-
+	public var worldSize = 20;
 	public var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
 	public var jimBanana:NPC;
 	public var tonyPlayer:Player;
 	public var floor:PhysicsObject;
 
+	var _finalWorldSize = 0;
+
 	override public function create():Void
 	{
 		super.create();
 		FlxTransitionableState.skipNextTransOut = true;
-		FlxG.sound.music.stop();
-		if (!FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic("assets/music/mainMus.wav", 0.5, true);
-		}
-
-		bgColor = 0xffcccccc;
+		// Level Initialization
+		_finalWorldSize = worldSize * 1000;
+		FlxG.sound.music.stop(); // Stopping current music
+		FlxG.sound.playMusic("assets/music/mainMus.wav", 0.5, true); // TEMPORARY bg music
+		FlxG.worldBounds.set(0, 0, _finalWorldSize, _finalWorldSize); // Setting world size
+		bgColor = 0xff6ceeff; // Sky color
 
 		floor = new PhysicsObject(0, 550, '', collisionObjects, FLOOR);
 		floor.makeGraphic(1280, 300, FlxColor.BLACK);
@@ -46,12 +45,12 @@ class PlayState extends FlxTransitionableState
 		add(floor);
 
 		jimBanana = new NPC(404, 0, '', collisionObjects);
-		jimBanana.load(); // Jim has his defaults set already, lol
 		jimBanana.scale.x = 0.4;
 		jimBanana.scale.y = 0.4;
+		jimBanana.load(); // Jim has his defaults set already, lol
 		jimBanana.updateHitbox();
 		jimBanana.animation.play('idleanim');
-		add(jimBanana);
+		// add(jimBanana);
 
 		tonyPlayer = new Player(0, 0, 'Tony', collisionObjects);
 		tonyPlayer.antialiasing = true;
@@ -59,13 +58,12 @@ class PlayState extends FlxTransitionableState
 
 		hud = new GameHud();
 		add(hud);
-
-		levelBounds = FlxCollision.createCameraWall(FlxG.camera, false, 1);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		FlxG.camera.follow(tonyPlayer, FlxCameraFollowStyle.PLATFORMER, 15 * elapsed);
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			openSubState(new PauseSubState());
@@ -74,8 +72,6 @@ class PlayState extends FlxTransitionableState
 		{
 			openSubState(new DeadSubState());
 		}
-
-		FlxG.collide(tonyPlayer, levelBounds);
 
 		if (!FlxG.sound.music.playing)
 		{

@@ -5,17 +5,24 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class PhysicsObject extends FlxSprite
 {
 	public var gravity:Int = 6;
 	public var hasPhysics:Bool = true;
-	public var colliders:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
-	public var isColliding:Bool = false;
 	public var type:ColliderType;
+
+	public var colliders:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
 	public var colliderType:ColliderType = NONE;
+
+	public var physVelocity:FlxPoint;
+	public var physAcceleration:FlxPoint;
+	public var physMaxVelocity:FlxPoint;
+	public var physDrag:FlxPoint;
 	public var onFloor:Bool = false;
+	public var isColliding:Bool = false;
 
 	var _finalGravity = 0;
 
@@ -26,40 +33,72 @@ class PhysicsObject extends FlxSprite
 		this.type = type;
 
 		// Initializing Physics
-		_finalGravity = gravity * 100; // make the gravity variable more user-friendly
+		_finalGravity = gravity * 100; // make the gravity/world size variable more user-friendly
+		physVelocity = new FlxPoint(0, 0);
+		physAcceleration = new FlxPoint(0, 0);
+		physMaxVelocity = new FlxPoint(500, 500); // Optional max physVelocity cap
+		physDrag = new FlxPoint(0, 0); // Drag force values for x and y axes
 		if (type == CONTROLLER || type == NPC)
 		{
-			applyGravity();
+			physAcceleration.y = _finalGravity;
+		}
+		else
+		{
+			immovable = true;
 		}
 	}
 
-	public function removeGravity()
+	public function physTick(elapsed:Float)
 	{
-		acceleration.y = 0;
-	}
+		// update velocity based on physAcceleration
+		physVelocity.x += physAcceleration.x * elapsed;
+		physVelocity.y += physAcceleration.y * elapsed;
 
-	public function invertGravity()
-	{
-		acceleration.y -= _finalGravity * 2; // Why did i invert it like this
-	}
+		// horizontal drag
+		if (physVelocity.x != 0)
+		{
+			var dragX = physDrag.x * elapsed;
+			if (Math.abs(physVelocity.x) < dragX)
+				physVelocity.x = 0; // stop completely when drag overcomes velocity
+			else
+				physVelocity.x -= dragX * Common.sign(physVelocity.x); // apply drag in the opposite direction of movement
+		}
 
-	public function applyGravity()
-	{
-		acceleration.y = _finalGravity;
-	}
+		// vertical drag
+		if (physVelocity.y != 0)
+		{
+			var dragY = physDrag.y * elapsed;
+			if (Math.abs(physVelocity.y) < dragY)
+				physVelocity.y = 0;
+			else
+				physVelocity.y -= dragY * Common.sign(physVelocity.y);
+		}
 
-	public function physTick()
-	{
+		// clamp velocity to maxVelocity
+		physVelocity.x = Math.min(physVelocity.x, physMaxVelocity.x);
+		physVelocity.y = Math.min(physVelocity.y, physMaxVelocity.y);
+
+		// update position based on velocity
+		x += physVelocity.x * elapsed;
+		y += physVelocity.y * elapsed;
+
+		// collision logic
 		if (type != FLOOR && type != NONE)
 		{
-			isColliding = false;
-			onFloor = false;
 			colliders.forEachAlive(function(obj:PhysicsObject)
 			{
+				// Collision detection
 				isColliding = FlxG.collide(this, obj);
-				colliderType = obj.colliderType;
+				// Post Collision handling
+				colliderType = obj.type;
 				if (isColliding && colliderType == FLOOR)
+				{
 					onFloor = true;
+				}
+				else
+				{
+					onFloor = false;
+				}
 			});
 		}
 	}
@@ -68,6 +107,6 @@ class PhysicsObject extends FlxSprite
 	{
 		super.update(elapsed);
 		if (hasPhysics)
-			physTick();
+			physTick(elapsed);
 	}
 }

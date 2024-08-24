@@ -32,21 +32,23 @@ class Player extends PhysicsObject
 
 		scale.set(0.35, 0.35);
 		updateHitbox();
-		drag.x = speed * 4;
+		physDrag.x = speed * 4;
 
 		setFacingFlip(LEFT, false, false);
 		setFacingFlip(RIGHT, true, false);
 	}
 
-	override public function physTick()
+	override public function physTick(elapsed:Float)
 	{
-		super.physTick();
+		super.physTick(elapsed);
 		_left = FlxG.keys.anyPressed([LEFT, A]);
 		_right = FlxG.keys.anyPressed([RIGHT, D]);
 		_down = FlxG.keys.anyPressed([DOWN, S]);
 		_jump = FlxG.keys.anyPressed([UP, SPACE, W]);
 		if (_jump && onFloor)
-			velocity.y = -_finalGravity / 1.5;
+		{
+			physVelocity.y = -_finalGravity / 1.5;
+		}
 		movement();
 	}
 
@@ -70,17 +72,17 @@ class Player extends PhysicsObject
 
 		if (_left && _right)
 		{
-			velocity.x = 0;
+			physVelocity.x = 0;
 			animation.play("Idle");
 		}
 		else if (_left)
 		{
-			velocity.x = -speed;
+			physVelocity.x = -speed;
 			facing = LEFT;
 		}
 		else if (_right)
 		{
-			velocity.x = speed;
+			physVelocity.x = speed;
 			facing = RIGHT;
 		}
 	}
