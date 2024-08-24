@@ -1,5 +1,6 @@
 package frontend.states;
 
+import backend.utils.CachingUtil;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -48,7 +49,6 @@ class MainMenuState extends FlxTransitionableState
 		transOut = FlxTransitionableState.defaultTransOut;
 
 		curSelected = 0; // Set curSelected to 0 at the start of the state
-
 		if (!FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic("assets/music/MainNew.wav", 0.5, true);
@@ -111,7 +111,7 @@ class MainMenuState extends FlxTransitionableState
 		add(credtis);
 
 		selectorguy = new FlxSprite(1290.65, 465.35);
-		selectorguy.loadGraphic("assets/images/title/unused/selectorthingy.png");
+		selectorguy.loadGraphic("assets/images/title/selector.png");
 		selectorguy.antialiasing = true;
 		FlxTween.tween(selectorguy, {x: 577.65, y: 465.35}, 2, {
 			ease: FlxEase.quartOut,

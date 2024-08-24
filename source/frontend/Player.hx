@@ -1,6 +1,7 @@
-package backend.ingame.objects;
+package frontend;
 
-import backend.Common.ColliderType;
+import backend.ingame.objects.PhysicsObject;
+import backend.utils.Common.ColliderType;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;

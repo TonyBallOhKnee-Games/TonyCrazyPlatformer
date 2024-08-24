@@ -1,9 +1,7 @@
 package frontend.states;
 
 import backend.GameHud;
-import backend.ingame.objects.NPC;
 import backend.ingame.objects.PhysicsObject;
-import backend.ingame.objects.Player;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -14,6 +12,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
+import frontend.NPC;
+import frontend.Player;
 import frontend.states.substates.DeadSubState;
 import frontend.states.substates.PauseSubState;
 

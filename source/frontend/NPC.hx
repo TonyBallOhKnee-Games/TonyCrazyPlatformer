@@ -1,6 +1,7 @@
-package backend.ingame.objects;
+package frontend;
 
-import backend.Common.AnimData;
+import backend.ingame.objects.PhysicsObject;
+import backend.utils.Common.AnimData;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;

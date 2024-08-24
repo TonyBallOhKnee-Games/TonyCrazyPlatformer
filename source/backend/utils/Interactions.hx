@@ -1,4 +1,4 @@
-package backend;
+package backend.utils;
 
 import flixel.FlxG;
 import flixel.FlxObject;

@@ -1,4 +1,4 @@
-package backend;
+package backend.utils;
 
 typedef AnimData =
 {
