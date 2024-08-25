@@ -52,7 +52,7 @@ class PlayState extends FlxTransitionableState
 		jimBanana.animation.play('idleanim');
 		// add(jimBanana);
 
-		tonyPlayer = new Player(0, 0, 'Tony', collisionObjects);
+		tonyPlayer = new Player(0, 0, 'tony', collisionObjects);
 		tonyPlayer.antialiasing = true;
 		add(tonyPlayer);
 

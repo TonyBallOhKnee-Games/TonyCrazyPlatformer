@@ -1,5 +1,8 @@
 package backend.utils;
 
+import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.system.FlxAssets.FlxXmlAsset;
+
 typedef AnimData =
 {
 	var name:String;
@@ -8,6 +11,27 @@ typedef AnimData =
 	var looped:Bool;
 	var flipX:Bool;
 	var flipY:Bool;
+}
+
+typedef PlayerAssets =
+{
+	var charPath:String;
+	var charImg:FlxGraphicAsset;
+	var charXml:FlxXmlAsset;
+	var deathImg:FlxGraphicAsset;
+	var deathXml:FlxXmlAsset;
+	var dialogueImg:FlxGraphicAsset;
+	var dialogueXml:FlxXmlAsset;
+	var animData:String; // I need to make this a JSON when the time rolls around.
+	var soundData:Array<Array<String>>;
+}
+
+typedef NPCAssets =
+{
+	var npcPath:String;
+	var npcImg:FlxGraphicAsset;
+	var npcXml:FlxXmlAsset;
+	// I need to make this a lot bigger when needed.
 }
 
 enum ColliderType

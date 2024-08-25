@@ -20,7 +20,6 @@ class DeadSubState extends FlxSubState
 		super.create();
 
 		FlxG.sound.music.stop();
-		dead.loadGraphic('assets/images/deathScreen/Dead.png', true);
 		dead.frames = FlxAtlasFrames.fromSparrow('assets/images/deathScreen/Dead.png', 'assets/images/deathScreen/Dead.xml');
 		dead.animation.addByPrefix('Dead', 'Dying instance 1', 24, false);
 		dead.antialiasing = true;
@@ -44,7 +43,6 @@ class DeadSubState extends FlxSubState
 		{
 			close();
 			FlxG.switchState(new PlayState());
-			
 		};
 		if (FlxG.keys.anyPressed([ESCAPE, BACKSPACE]))
 		{

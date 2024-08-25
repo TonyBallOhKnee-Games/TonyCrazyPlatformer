@@ -11,8 +11,8 @@ class Main extends Sprite
 	{
 		super();
 		var game:FlxGame = new FlxGame(1280, 720, CachingState, 240, 240, true);
-
 		addChild(game);
+
 		var fpsCounter = new FPSCounter(15, 5, 0xFFFFFFFF);
 		addChild(fpsCounter);
 		haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos)

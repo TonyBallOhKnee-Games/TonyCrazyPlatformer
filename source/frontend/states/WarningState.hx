@@ -1,23 +1,22 @@
 package frontend.states;
 
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileCircle;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileSquare;
-import flixel.addons.transition.TransitionData;
+import backend.utils.GameAssets;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileCircle;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileSquare;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.TransitionData;
 import flixel.addons.transition.TransitionData;
 import flixel.graphics.FlxGraphic;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-
-
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
 
 class WarningState extends FlxTransitionableState
 {
@@ -26,7 +25,7 @@ class WarningState extends FlxTransitionableState
 	override public function create():Void
 	{
 		super.create();
-		
+
 		FlxG.sound.music.stop();
 
 		FlxTransitionableState.defaultTransIn = new TransitionData();
@@ -43,10 +42,9 @@ class WarningState extends FlxTransitionableState
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
-		
 		this.bgColor = 0xff000000;
 		var warningBG:FlxSprite = new FlxSprite(0, 0);
-		warningBG.loadGraphic("assets/images/warning/Hey.png");
+		warningBG.loadGraphic(GameAssets.getAsset('Warning Menu', 'Hey'));
 		warningBG.antialiasing = true;
 		add(warningBG);
 

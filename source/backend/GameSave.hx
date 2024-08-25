@@ -1,3 +1,3 @@
 package backend;
 
-class GameSave {}
+class GameSave {} // Later

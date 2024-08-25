@@ -49,7 +49,7 @@ class PhysicsObject extends FlxSprite
 		}
 	}
 
-	public function physTick(elapsed:Float)
+	public function physTick(elapsed:Float) // Why did I do this again? I forgot
 	{
 		// update velocity based on physAcceleration
 		physVelocity.x += physAcceleration.x * elapsed;

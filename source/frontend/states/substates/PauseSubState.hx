@@ -1,5 +1,6 @@
 package frontend.states.substates;
 
+import backend.utils.GameAssets;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -44,14 +45,14 @@ class PauseSubState extends FlxSubState
 
 		// Characters
 		gloria = new FlxSprite(239, 784.2);
-		gloria.loadGraphic("assets/images/Pause/gloria.png");
+		gloria.loadGraphic(GameAssets.getAsset('Pause Menu', 'Gloria'));
 		gloria.antialiasing = true;
 		gloria.alpha = 0;
 		FlxTween.tween(gloria, {x: 239, y: 19.2, alpha: 1}, 0.8, {ease: FlxEase.circOut, startDelay: 0.05});
 		add(gloria);
 
 		tony = new FlxSprite(1323.3, 168.05);
-		tony.loadGraphic("assets/images/Pause/tony.png");
+		tony.loadGraphic(GameAssets.getAsset('Pause Menu', 'Tony'));
 		tony.antialiasing = true;
 		tony.alpha = 0;
 		FlxTween.tween(tony, {x: 592.3, y: 168.05, alpha: 1}, 0.8, {
@@ -61,7 +62,7 @@ class PauseSubState extends FlxSubState
 		add(tony);
 
 		baloney = new FlxSprite(-697.65, 126.5);
-		baloney.loadGraphic("assets/images/Pause/baloney.png");
+		baloney.loadGraphic(GameAssets.getAsset('Pause Menu', 'Baloney'));
 		baloney.antialiasing = true;
 		baloney.alpha = 0;
 		FlxTween.tween(baloney, {x: -34.65, y: 126.5, alpha: 1}, 0.8, {
@@ -72,7 +73,7 @@ class PauseSubState extends FlxSubState
 
 		// Pause Text
 		pauseText = new FlxSprite(396.55, -144.55);
-		pauseText.loadGraphic("assets/images/Pause/paused.png");
+		pauseText.loadGraphic(GameAssets.getAsset('Pause Menu', 'Paused'));
 		pauseText.antialiasing = true;
 		pauseText.alpha = 0;
 		FlxTween.tween(pauseText, {x: 396.55, y: 543.95, alpha: 1}, 0.8, {

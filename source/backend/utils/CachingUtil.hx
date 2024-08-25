@@ -1,6 +1,5 @@
 package backend.utils;
 
-import cpp.vm.Gc;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -30,9 +29,10 @@ class CachingUtil
 	public static var loadingStr:String = 'hehe, null.';
 
 	// Images
-	public static var subImagePaths:Array<String> = [];
+	public static var uiImagePaths:Array<String> = [];
+	// Gameplay images will be loaded dynamically.
 	// public static var hudImagePaths:Array<String> = []; --Later.
-	public static var subImages:Array<String> = [];
+	public static var uiImages:Array<String> = [];
 	public static var images:Array<String> = [];
 	// Sounds/Music
 	public static var sound:Array<String> = [];
@@ -41,34 +41,30 @@ class CachingUtil
 	public static var doneCaching = false;
 	public static var curProgress:Int = 0;
 
-	public static function cacheBaseAssets()
+	public static function cacheBaseAssets(?fromInitializer:Bool = false)
 	{
-		if (subImagePaths.length <= 0)
+		if (uiImagePaths.length <= 0)
 		{
-			subImagePaths.push('characters');
-			subImagePaths.push('deathScreen');
-			subImagePaths.push('levelSelector');
-			subImagePaths.push('Pause');
-			subImagePaths.push('saveings');
-			subImagePaths.push('title');
-			subImagePaths.push('warning');
+			uiImagePaths.push('misc');
+			uiImagePaths.push('menus/levelSelection');
+			uiImagePaths.push('menus/main');
+			uiImagePaths.push('menus/options');
+			uiImagePaths.push('menus/pause');
+			uiImagePaths.push('menus/save');
+			uiImagePaths.push('menus/warning');
+			uiImagePaths.push('menus/levelSelection');
+			// Not huds, I'll do that later.
 		}
-		for (path in subImagePaths)
+		for (path in uiImagePaths)
 		{
-			for (file in FileSystem.readDirectory(FileSystem.absolutePath('assets/images/$path')))
+			// trace('$path: ${FileSystem.exists('assets/images/ui/$path')}'); --I made a typo...
+			for (file in FileSystem.readDirectory(FileSystem.absolutePath('assets/images/ui/$path')))
 			{
 				if (!file.endsWith(".png"))
 					continue;
-				subImages.push('$path/$file');
+				uiImages.push('$path/$file');
 				fullSize++;
 			}
-		}
-		for (file in FileSystem.readDirectory(FileSystem.absolutePath("assets/images")))
-		{
-			if (!file.endsWith(".png"))
-				continue;
-			images.push('assets/images/$file');
-			fullSize++;
 		}
 		for (file in FileSystem.readDirectory(FileSystem.absolutePath("assets/sounds")))
 		{
@@ -83,32 +79,22 @@ class CachingUtil
 
 		Thread.create(() ->
 		{ // Create a new thread so the game doesnt freeze
-			cache();
+			cache(fromInitializer);
 		});
 	}
 
-	public static function cache()
+	public static function cache(fromInitializer:Bool = false)
 	{
-		curProgress = 0;
-		for (i in images)
+		for (i in uiImages)
 		{
 			curProgress++;
 			loadingStr = 'Loading: $i';
-			var data:BitmapData = BitmapData.fromFile(i);
+			var data:BitmapData = BitmapData.fromFile('assets/images/ui/$i');
 			var graphic:FlxGraphic = FlxGraphic.fromBitmapData(data);
 			graphic.persist = true;
 			graphic.destroyOnNoUse = false;
 			FileUtil.addGraphicToCache(i, graphic);
-		}
-		for (i in subImages)
-		{
-			curProgress++;
-			loadingStr = 'Loading: $i';
-			var data:BitmapData = BitmapData.fromFile(i);
-			var graphic:FlxGraphic = FlxGraphic.fromBitmapData(data);
-			graphic.persist = true;
-			graphic.destroyOnNoUse = false;
-			FileUtil.addGraphicToCache(i, graphic);
+			trace(i);
 		}
 
 		for (i in sound)
@@ -118,9 +104,17 @@ class CachingUtil
 			var sound:FlxSound;
 			sound = new FlxSound();
 			sound.loadEmbedded(i);
-			sound.destroy();
-			sound = null;
+			sound.volume = 0;
+			sound.play();
+			new FlxTimer().start(0.1, function(tmr:FlxTimer)
+			{
+				sound.stop();
+				sound.destroy();
+				sound = null;
+			});
 		}
 		doneCaching = true;
+		if (fromInitializer)
+			Initializer.postCache();
 	}
 }

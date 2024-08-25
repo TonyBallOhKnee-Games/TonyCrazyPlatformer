@@ -1,6 +1,7 @@
 package frontend.states;
 
 import backend.utils.CachingUtil;
+import backend.utils.Initializer;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -24,17 +25,17 @@ class CachingState extends FlxState
 	override function create()
 	{
 		super.create();
-		var gradient = new FlxSprite(0, 0, 'assets/images/loading/Gradient.png');
+		var gradient = new FlxSprite(0, 0, 'assets/images/ui/menus/loadingScreen/Gradient.png');
 		add(gradient);
 		gradient.color = FlxColor.GREEN;
-		var backdrop = new FlxBackdrop('assets/images/loading/Checker.png', XY);
+		var backdrop = new FlxBackdrop('assets/images/ui/menus/loadingScreen/Checker.png', XY);
 		backdrop.velocity.x = 500;
 		backdrop.velocity.y = 500;
 		backdrop.color = FlxColor.LIME;
 		add(backdrop);
-		tonyHead = new FlxSprite(0, 0, 'assets/images/loading/TonyHead.png');
+		tonyHead = new FlxSprite(0, 0, 'assets/images/ui/menus/loadingScreen/TonyHead.png');
 		add(tonyHead);
-		CachingUtil.cacheBaseAssets();
+		Initializer.initialize();
 		loadingText = new FlxText(12, 570, 0, "", 12);
 		loadingText.scrollFactor.set();
 		loadingText.setFormat(null, 35, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, false);

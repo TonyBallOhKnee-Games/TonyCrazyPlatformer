@@ -16,8 +16,6 @@ class GameHud extends FlxTypedGroup<FlxObject>
 	public function new()
 	{
 		super();
-
-		var coolness:FlxSprite = new FlxSprite(0, 0);
 	}
 
 	public function incrementScore()

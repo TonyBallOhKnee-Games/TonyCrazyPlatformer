@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="TonyDialouge.png">
+<TextureAtlas imagePath="dialogue.png">
 	<!-- Created with Adobe Animate version 24.0.4.28 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="TonyBwomp0000" x="10" y="10" width="568" height="572"/>

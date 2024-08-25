@@ -11,7 +11,7 @@ class FileUtil
 		cache.set(path, graphic);
 	}
 
-	public static function getGraphicFromCache(path:String):FlxGraphic
+	public static function getUIGraphicFromCache(path:String):FlxGraphic
 	{
 		return cache.get(path);
 	}

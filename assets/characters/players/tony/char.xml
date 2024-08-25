@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Tony.png">
+<TextureAtlas imagePath="char.png">
 	<!-- Created with Adobe Animate version 22.0.6.202 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="Attack0000" x="10" y="10" width="406" height="608"/>

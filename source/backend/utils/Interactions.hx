@@ -5,7 +5,7 @@ import flixel.FlxObject;
 
 class Interactions
 {
-	public static function objectCollision(object1:FlxObject, object2:FlxObject)
+	public static function objectCollision(object1:FlxObject, object2:FlxObject) // TODO: FIX THIS!! THIS DON'T WORK!
 	{
 		return object1.x > object2.x
 			&& object1.x < object2.x + object2.width
