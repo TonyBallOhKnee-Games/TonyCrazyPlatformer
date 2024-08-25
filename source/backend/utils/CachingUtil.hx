@@ -94,7 +94,6 @@ class CachingUtil
 			graphic.persist = true;
 			graphic.destroyOnNoUse = false;
 			FileUtil.addGraphicToCache(i, graphic);
-			trace(i);
 		}
 
 		for (i in sound)
