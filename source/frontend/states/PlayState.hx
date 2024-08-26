@@ -19,12 +19,13 @@ import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxTransitionableState
 {
-	public var hud:GameHud;
-	public var worldSize = 20;
-	public var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
-	public var jimBanana:NPC;
-	public var tonyPlayer:Player;
-	public var floor:PhysicsObject;
+	public static var hud:GameHud;
+	public static var hudCam:FlxCamera;
+	public static var worldSize = 20;
+	public static var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
+	public static var jimBanana:NPC;
+	public static var tonyPlayer:Player;
+	public static var floor:PhysicsObject;
 
 	var _finalWorldSize = 0;
 
@@ -56,7 +57,11 @@ class PlayState extends FlxTransitionableState
 		tonyPlayer.antialiasing = true;
 		add(tonyPlayer);
 
+		hudCam = new FlxCamera(0, 0, 1280, 720, 0);
+		hudCam.bgColor = FlxColor.TRANSPARENT;
+		FlxG.cameras.add(hudCam, false);
 		hud = new GameHud();
+		hud.camera = hudCam;
 		add(hud);
 	}
 
@@ -70,7 +75,7 @@ class PlayState extends FlxTransitionableState
 		}
 		if (FlxG.keys.justPressed.R)
 		{
-			openSubState(new DeadSubState());
+			openSubState(new DeadSubState(tonyPlayer));
 		}
 
 		if (!FlxG.sound.music.playing)

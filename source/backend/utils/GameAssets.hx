@@ -62,7 +62,7 @@ class GameAssets
 
 	public static function getNPCAssets(name:String):NPCAssets
 	{
-		var npcPath = 'assets/characters/npcs/$name';
+		var npcPath = 'assets/data/characters/npcs/$name';
 		var npcImg = '$npcPath/char.png';
 		var npcXml = '$npcPath/char.xml';
 		return {
@@ -74,7 +74,7 @@ class GameAssets
 
 	public static function getPlayerAssets(name:String):PlayerAssets
 	{
-		var charPath = 'assets/characters/players/$name';
+		var charPath = 'assets/data/characters/players/$name';
 		var charImg = '$charPath/char.png';
 		var charXml = '$charPath/char.xml';
 		var deathImg = '$charPath/death.png';
@@ -82,7 +82,7 @@ class GameAssets
 		var dialogueImg = '$charPath/dialogue.png';
 		var dialogueXml = '$charPath/dialogue.xml';
 		var animData = ''; // It's not done yet.
-		var soundData = ADHUtil.ParseAA(File.getContent('$charPath/sounds/sounds.adh'), ':');
+		var soundData = ADHUtil.ParseAA(File.getContent('$charPath/sounds/soundBindings.adh'), ':');
 		return {
 			charPath: charPath,
 			charImg: charImg,

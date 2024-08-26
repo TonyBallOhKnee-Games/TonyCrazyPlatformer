@@ -34,6 +34,7 @@ class PauseSubState extends FlxSubState
 		// Fade-Out Overlay
 		fadeOverlay = new FlxSprite();
 		fadeOverlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		fadeOverlay.camera = PlayState.hudCam;
 		fadeOverlay.alpha = 0; // Start transparent
 
 		FlxTween.tween(fadeOverlay, {alpha: 0.7}, 0.8, {
@@ -48,6 +49,7 @@ class PauseSubState extends FlxSubState
 		gloria.loadGraphic(GameAssets.getAsset('Pause Menu', 'Gloria'));
 		gloria.antialiasing = true;
 		gloria.alpha = 0;
+		gloria.camera = PlayState.hudCam;
 		FlxTween.tween(gloria, {x: 239, y: 19.2, alpha: 1}, 0.8, {ease: FlxEase.circOut, startDelay: 0.05});
 		add(gloria);
 
@@ -55,6 +57,7 @@ class PauseSubState extends FlxSubState
 		tony.loadGraphic(GameAssets.getAsset('Pause Menu', 'Tony'));
 		tony.antialiasing = true;
 		tony.alpha = 0;
+		tony.camera = PlayState.hudCam;
 		FlxTween.tween(tony, {x: 592.3, y: 168.05, alpha: 1}, 0.8, {
 			ease: FlxEase.circOut,
 			startDelay: 0.1
@@ -65,6 +68,7 @@ class PauseSubState extends FlxSubState
 		baloney.loadGraphic(GameAssets.getAsset('Pause Menu', 'Baloney'));
 		baloney.antialiasing = true;
 		baloney.alpha = 0;
+		baloney.camera = PlayState.hudCam;
 		FlxTween.tween(baloney, {x: -34.65, y: 126.5, alpha: 1}, 0.8, {
 			ease: FlxEase.circOut,
 			startDelay: 0.08
@@ -76,6 +80,7 @@ class PauseSubState extends FlxSubState
 		pauseText.loadGraphic(GameAssets.getAsset('Pause Menu', 'Paused'));
 		pauseText.antialiasing = true;
 		pauseText.alpha = 0;
+		pauseText.camera = PlayState.hudCam;
 		FlxTween.tween(pauseText, {x: 396.55, y: 543.95, alpha: 1}, 0.8, {
 			ease: FlxEase.circOut,
 			startDelay: 0
@@ -84,6 +89,7 @@ class PauseSubState extends FlxSubState
 
 		title = new FlxText(0, -200, 0, "Press Q to quit. \n Press ESC to unpause");
 		title.setFormat("assets/fonts/baloney.ttf", 32, FlxColor.WHITE, "center");
+		title.camera = PlayState.hudCam;
 
 		FlxTween.tween(title, {x: 0, y: 0}, 0.8, {
 			ease: FlxEase.circOut,
