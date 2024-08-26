@@ -1,6 +1,7 @@
 package frontend.states.substates;
 
 import backend.utils.GameAssets;
+import backend.utils.TweenHelper;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -21,6 +22,7 @@ class PauseSubState extends FlxSubState
 	var title:FlxText;
 	var pauseMusic:FlxSound;
 	var canPress:Bool = true;
+	var tweens:Array<FlxTween>;
 
 	override public function create():Void
 	{
@@ -36,12 +38,7 @@ class PauseSubState extends FlxSubState
 		fadeOverlay.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		fadeOverlay.camera = PlayState.hudCam;
 		fadeOverlay.alpha = 0; // Start transparent
-
-		FlxTween.tween(fadeOverlay, {alpha: 0.7}, 0.8, {
-			ease: FlxEase.quadOut,
-			// onComplete: resumeGame
-		});
-
+		FlxTween.tween(fadeOverlay, {alpha: 0.7}, 0.8, {ease: FlxEase.quadOut});
 		add(fadeOverlay);
 
 		// Characters
@@ -58,10 +55,7 @@ class PauseSubState extends FlxSubState
 		tony.antialiasing = true;
 		tony.alpha = 0;
 		tony.camera = PlayState.hudCam;
-		FlxTween.tween(tony, {x: 592.3, y: 168.05, alpha: 1}, 0.8, {
-			ease: FlxEase.circOut,
-			startDelay: 0.1
-		});
+		FlxTween.tween(tony, {x: 592.3, y: 168.05, alpha: 1}, 0.8, {ease: FlxEase.circOut, startDelay: 0.1});
 		add(tony);
 
 		baloney = new FlxSprite(-697.65, 126.5);
@@ -81,20 +75,14 @@ class PauseSubState extends FlxSubState
 		pauseText.antialiasing = true;
 		pauseText.alpha = 0;
 		pauseText.camera = PlayState.hudCam;
-		FlxTween.tween(pauseText, {x: 396.55, y: 543.95, alpha: 1}, 0.8, {
-			ease: FlxEase.circOut,
-			startDelay: 0
-		});
+		FlxTween.tween(pauseText, {x: 396.55, y: 543.95, alpha: 1}, 0.8, {ease: FlxEase.circOut});
 		add(pauseText);
 
 		title = new FlxText(0, -200, 0, "Press Q to quit. \n Press ESC to unpause");
 		title.setFormat("assets/fonts/baloney.ttf", 32, FlxColor.WHITE, "center");
 		title.camera = PlayState.hudCam;
 
-		FlxTween.tween(title, {x: 0, y: 0}, 0.8, {
-			ease: FlxEase.circOut,
-			startDelay: 0
-		});
+		FlxTween.tween(title, {x: 0, y: 0}, 0.8, {ease: FlxEase.circOut});
 
 		add(title);
 	}
@@ -182,12 +170,14 @@ class PauseSubState extends FlxSubState
 		if (FlxG.keys.justPressed.ESCAPE && canPress)
 		{
 			canPress = false;
+			TweenHelper.cancelAllTweens();
 			startFadeOut();
 		}
 
 		if (FlxG.keys.justPressed.Q && canPress)
 		{
 			canPress = false;
+			TweenHelper.cancelAllTweens();
 			startFadeOutQuit();
 		}
 	}
