@@ -5,6 +5,7 @@ import backend.utils.TweenHelper;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
+import flixel.math.FlxRandom;
 import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -27,9 +28,11 @@ class PauseSubState extends FlxSubState
 	override public function create():Void
 	{
 		super.create();
-
+		var pausePath:String = "assets/music/Paused.wav";
+		if (new FlxRandom().bool(20))
+			pausePath = "assets/music/dingaling.ogg";
 		FlxG.sound.music.pause();
-		pauseMusic = new FlxSound().loadEmbedded("assets/music/Paused.wav");
+		pauseMusic = new FlxSound().loadEmbedded(pausePath, true);
 		pauseMusic.play(true, 0, 0);
 		pauseMusic.fadeIn(3, 0, 0.5);
 
