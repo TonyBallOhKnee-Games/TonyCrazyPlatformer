@@ -8,6 +8,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.TransitionData;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.util.FlxCollision;
@@ -19,48 +20,66 @@ import frontend.states.substates.PauseSubState;
 
 class PlayState extends FlxTransitionableState
 {
-	public static var hud:GameHud;
-	public static var hudCam:FlxCamera;
-	public static var worldSize = 20;
-	public static var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
-	public static var jimBanana:NPC;
-	public static var tonyPlayer:Player;
-	public static var floor:PhysicsObject;
+	public var hud:GameHud;
+	public var hudCam:FlxCamera;
+	public var collisionObjects:FlxTypedGroup<PhysicsObject> = new FlxTypedGroup<PhysicsObject>();
+	public var jimBanana:NPC;
+	public var player:Player;
+	public var floor:PhysicsObject;
+	public var allLevelData:Array<Array<Array<String>>> = []; // all data:[level:[stuff], npcs:[stuff]]
+	public var level:Array<Array<String>> = [];
+	public var npcs:Array<Array<String>> = [];
+	public var properties:Array<String> = ['6ceeff', '', 'assets/music/mainMus.wav', '0.5']; // [bgColor, hudName, bgMusic, bgMusVolume] also stored in a .adh
+	public var spriteMap:Map<String, FlxSprite>;
+	public var npcMap:Map<String, FlxSprite>;
+	public var hasADHData:Bool = false;
 
-	var _finalWorldSize = 0;
+	override public function new(?ADHData:Array<Array<Array<String>>>, ?Properties:Array<String>, ?TransIn:TransitionData, ?TransOut:TransitionData)
+	{
+		super(TransIn, TransOut);
+		if (ADHData != null)
+		{
+			hasADHData = true;
+			allLevelData = ADHData;
+			level = allLevelData[0];
+			npcs = allLevelData[1];
+			this.properties = Properties;
+		}
+	}
 
 	override public function create():Void
 	{
 		super.create();
 		FlxTransitionableState.skipNextTransOut = true;
 		// Level Initialization
-		_finalWorldSize = worldSize * 1000;
 		FlxG.sound.music.stop(); // Stopping current music
-		FlxG.sound.playMusic("assets/music/mainMus.wav", 0.5, true); // TEMPORARY bg music
-		FlxG.worldBounds.set(0, 0, _finalWorldSize, _finalWorldSize); // Setting world size
-		bgColor = 0xff6ceeff; // Sky color
+		FlxG.sound.playMusic(properties[2], Std.parseFloat(properties[3]), true); // TEMPORARY bg music
+		bgColor = FlxColor.fromString(properties[0]); // Sky color
 
-		floor = new PhysicsObject(0, 550, '', collisionObjects, FLOOR);
-		floor.makeGraphic(1280, 300, FlxColor.BLACK);
-		collisionObjects.add(floor);
-		add(floor);
+		if (!hasADHData)
+		{
+			floor = new PhysicsObject(0, 550, '', collisionObjects, FLOOR);
+			floor.makeGraphic(1280, 300, FlxColor.BLACK);
+			collisionObjects.add(floor);
+			add(floor);
 
-		jimBanana = new NPC(404, 0, '', collisionObjects);
-		jimBanana.scale.x = 0.4;
-		jimBanana.scale.y = 0.4;
-		jimBanana.load(); // Jim has his defaults set already, lol
-		jimBanana.updateHitbox();
-		jimBanana.animation.play('idleanim');
-		// add(jimBanana);
+			jimBanana = new NPC(404, 0, '', collisionObjects);
+			jimBanana.scale.x = 0.4;
+			jimBanana.scale.y = 0.4;
+			jimBanana.load(); // Jim has his defaults set already, lol
+			jimBanana.updateHitbox();
+			jimBanana.animation.play('idleanim');
+			add(jimBanana);
+		}
 
-		tonyPlayer = new Player(0, 0, 'tony', collisionObjects);
-		tonyPlayer.antialiasing = true;
-		add(tonyPlayer);
+		player = new Player(0, 0, 'tony', collisionObjects);
+		player.antialiasing = true;
+		add(player);
 
 		hudCam = new FlxCamera(0, 0, 1280, 720, 0);
 		hudCam.bgColor = FlxColor.TRANSPARENT;
 		FlxG.cameras.add(hudCam, false);
-		hud = new GameHud();
+		hud = new GameHud(properties[1]);
 		hud.camera = hudCam;
 		add(hud);
 	}
@@ -68,14 +87,14 @@ class PlayState extends FlxTransitionableState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		FlxG.camera.follow(tonyPlayer, FlxCameraFollowStyle.PLATFORMER, 15 * elapsed);
+		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER, 15 * elapsed);
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
-			openSubState(new PauseSubState());
+			openSubState(new PauseSubState(this));
 		}
 		if (FlxG.keys.justPressed.R)
 		{
-			openSubState(new DeadSubState(tonyPlayer));
+			openSubState(new DeadSubState(this));
 		}
 
 		if (!FlxG.sound.music.playing)

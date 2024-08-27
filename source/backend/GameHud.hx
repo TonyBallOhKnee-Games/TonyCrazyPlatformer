@@ -10,17 +10,11 @@ import flixel.util.FlxColor;
 
 class GameHud extends FlxTypedGroup<FlxObject>
 {
-	var scoreText:FlxText;
-	var score = 0;
+	var hudSkinName:String;
 
-	public function new()
+	public function new(?hudSkin:String = 'default')
 	{
 		super();
-	}
-
-	public function incrementScore()
-	{
-		score++;
-		scoreText.text = 'Score: $score';
+		hudSkinName = hudSkin;
 	}
 }

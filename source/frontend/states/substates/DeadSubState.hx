@@ -14,12 +14,12 @@ class DeadSubState extends FlxSubState
 {
 	public var dead:FlxSprite = new FlxSprite(0, 0);
 	public var funnySong:Bool = false;
-	public var player:Player;
+	public var playState:PlayState;
 
-	override public function new(player:Player)
+	override public function new(playState:PlayState)
 	{
 		super(FlxColor.TRANSPARENT);
-		this.player = player;
+		this.playState = playState;
 	}
 
 	override public function create():Void
@@ -27,11 +27,11 @@ class DeadSubState extends FlxSubState
 		super.create();
 
 		FlxG.sound.music.stop();
-		dead.frames = FlxAtlasFrames.fromSparrow(player.assets.deathImg, player.assets.deathXml);
+		dead.frames = FlxAtlasFrames.fromSparrow(playState.player.assets.deathImg, playState.player.assets.deathXml);
 		dead.animation.addByPrefix('Dead', 'Dying instance 1', 24, false);
 		dead.antialiasing = true;
 		dead.animation.play("Dead");
-		dead.camera = PlayState.hudCam;
+		dead.camera = playState.hudCam;
 		add(dead);
 
 		FlxG.sound.play("assets/sounds/deadTony.wav", 0.5, false);
