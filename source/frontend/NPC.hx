@@ -30,7 +30,7 @@ class NPC extends PhysicsObject
 		}
 	];
 
-	public function load(?charName:String = 'Jim', ?anims:Array<AnimData> = null, ?antialiasing:Bool = true)
+	public function load(?charName:String = 'jim', ?anims:Array<AnimData> = null, ?antialiasing:Bool = true, ?updateNPCHitbox = true)
 	{
 		if (anims == null)
 		{
@@ -41,6 +41,7 @@ class NPC extends PhysicsObject
 		for (anim in anims)
 			animation.addByPrefix(anim.name, anim.prefix, anim.fps, anim.looped, anim.flipX, anim.flipY);
 		antialiasing = true;
-		updateHitbox();
+		if (updateNPCHitbox)
+			updateHitbox();
 	}
 }

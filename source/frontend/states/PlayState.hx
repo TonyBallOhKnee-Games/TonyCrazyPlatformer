@@ -29,7 +29,7 @@ class PlayState extends FlxTransitionableState
 	public var allLevelData:Array<Array<Array<String>>> = []; // all data:[level:[stuff], npcs:[stuff]]
 	public var level:Array<Array<String>> = [];
 	public var npcs:Array<Array<String>> = [];
-	public var properties:Array<String> = ['6ceeff', '', 'assets/music/mainMus.wav', '0.5']; // [bgColor, hudName, bgMusic, bgMusVolume] also stored in a .adh
+	public var properties:Array<String> = ['CYAN', '', 'assets/music/mainMus.wav', '0.5']; // [bgColor, hudName, bgMusic, bgMusVolume] also stored in a .adh
 	public var spriteMap:Map<String, FlxSprite>;
 	public var npcMap:Map<String, FlxSprite>;
 	public var hasADHData:Bool = false;
@@ -64,11 +64,10 @@ class PlayState extends FlxTransitionableState
 			add(floor);
 
 			jimBanana = new NPC(404, 0, '', collisionObjects);
-			jimBanana.scale.x = 0.4;
-			jimBanana.scale.y = 0.4;
-			jimBanana.load(); // Jim has his defaults set already, lol
-			jimBanana.updateHitbox();
+			jimBanana.load('jim', null, true, false); // Jim has his defaults set already, lol
 			jimBanana.animation.play('idleanim');
+			jimBanana.scale.set(0.4, 0.4);
+			jimBanana.updateHitbox();
 			add(jimBanana);
 		}
 
