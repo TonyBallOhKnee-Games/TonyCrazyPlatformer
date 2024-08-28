@@ -80,10 +80,23 @@ class PlayState extends FlxTransitionableState
 				obj.alpha = Std.parsefloat(object[6]);
 				spriteMap.set(object[0], obj);
 				add(spriteMap.get(object[0]));
+				if (object[8] == 'true') // I don't have a string to Collider type function, I'll do it when I get home.
+					//collisionObjects.add(spriteMap.get(object[0]));
 ;			}
 			for (object in npcs)
 			{
-				// Later today/tommorow. I'm writing this while at school at my school computer :p
+				var obj = new NPC(object[2], object[3], '', collisionObjects);
+				obj.load(object[1], null, object[7]);
+				obj.scale.set(Std.parsefloat(object[4]), Std.parsefloat(object[5]));
+				obj.updateHitbox();
+				obj.alpha = Std.parsefloat(object[6]);
+				spriteMap.set(object[0], obj);
+				add(spriteMap.get(object[0]));
+				if (object[8] == 'true'){
+					collisionObjects.add(spriteMap.get(object[0]));
+				}else{
+					spriteMap.get(object[0]).hasPhysics = false;
+				}
 			}
 		}
 
