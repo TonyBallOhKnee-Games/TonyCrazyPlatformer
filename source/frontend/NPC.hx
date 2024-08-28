@@ -30,7 +30,7 @@ class NPC extends PhysicsObject
 		}
 	];
 
-	public function load(?charName:String = 'jim', ?anims:Array<AnimData> = null, ?antialiasing:Bool = true, ?updateNPCHitbox = true)
+	public function load(?charName:String = 'jim', ?anims:Array<AnimData> = null, ?hasAntialiasing:Bool = true, ?updateNPCHitbox = true)
 	{
 		if (anims == null)
 		{
@@ -40,7 +40,7 @@ class NPC extends PhysicsObject
 		frames = FlxAtlasFrames.fromSparrow(assets.npcImg, assets.npcXml);
 		for (anim in anims)
 			animation.addByPrefix(anim.name, anim.prefix, anim.fps, anim.looped, anim.flipX, anim.flipY);
-		antialiasing = true;
+		antialiasing = hasAntialiasing;
 		if (updateNPCHitbox)
 			updateHitbox();
 	}
