@@ -1,5 +1,5 @@
 CRITICAL: Rework the hud
-CRITICAL: Add Dynamic Level/World loading logic(dreading)
+CRITICAL: Add Dynamic Level/World loading logic(dreading, working)
 CRITICAL: Saving and Loading system
 TODO: Add Tony's jump and fall animations
 TODO: Options menu system/rework (waiting for concept/assets)
