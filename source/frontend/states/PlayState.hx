@@ -31,10 +31,11 @@ class PlayState extends FlxTransitionableState
 	public var npcs:Array<Array<String>> = [];
 	public var properties:Array<String> = ['CYAN', '', 'assets/music/mainMus.wav', '0.5']; // [bgColor, hudName, bgMusic, bgMusVolume] also stored in a .adh
 	public var spriteMap:Map<String, FlxSprite>;
-	public var npcMap:Map<String, FlxSprite>;
+	public var npcMap:Map<String, NPC>;
+	public var levelPath:String = '';
 	public var hasADHData:Bool = false;
 
-	override public function new(?ADHData:Array<Array<Array<String>>>, ?Properties:Array<String>, ?TransIn:TransitionData, ?TransOut:TransitionData)
+	override public function new(?levelPath:String = '', ?ADHData:Array<Array<Array<String>>>, ?Properties:Array<String>, ?TransIn:TransitionData, ?TransOut:TransitionData)
 	{
 		super(TransIn, TransOut);
 		if (ADHData != null)
@@ -43,6 +44,7 @@ class PlayState extends FlxTransitionableState
 			allLevelData = ADHData;
 			level = allLevelData[0];
 			npcs = allLevelData[1];
+			this.levelPath = levelPath;
 			this.properties = Properties;
 		}
 	}
@@ -69,6 +71,20 @@ class PlayState extends FlxTransitionableState
 			jimBanana.scale.set(0.4, 0.4);
 			jimBanana.updateHitbox();
 			add(jimBanana);
+		}else{
+			for (object in level)
+			{
+				var obj = new FlxSprite(Std.parseint(object[2]), Std.parseint(object[3]), '$levelPath/${object[1]}');
+				obj.scale.set(Std.parsefloat(object[4]), Std.parsefloat(object[5]));
+				obj.updateHitbox();
+				obj.alpha = Std.parsefloat(object[6]);
+				spriteMap.set(object[0], obj);
+				add(spriteMap.get(object[0]));
+;			}
+			for (object in npcs)
+			{
+				// Later today/tommorow. I'm writing this while at school at my school computer :p
+			}
 		}
 
 		player = new Player(0, 0, 'tony', collisionObjects);
