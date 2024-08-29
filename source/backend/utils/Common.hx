@@ -22,7 +22,7 @@ typedef PlayerAssets =
 	var deathXml:FlxXmlAsset;
 	var dialogueImg:FlxGraphicAsset;
 	var dialogueXml:FlxXmlAsset;
-	var animData:String; // I need to make this a JSON when the time rolls around.
+	var animData:Array<Array<String>>;
 	var soundData:Array<Array<String>>;
 }
 
