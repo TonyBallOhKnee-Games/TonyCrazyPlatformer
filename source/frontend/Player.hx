@@ -24,11 +24,15 @@ class Player extends PhysicsObject
 	var _down = false;
 	var _jump = false;
 
-	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>, ?animBingings:Array<Array<String>> = 0)
+	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>)
 	{
 		super(xPos, yPos, name, colliders, CONTROLLER);
 		assets = GameAssets.getPlayerAssets(name);
 		frames = FlxAtlasFrames.fromSparrow(assets.charImg, assets.charXml);
+		for (animBinding in assets.animBindings)
+		{
+			animation.addByPrefix(animBindings[0], animBindings[1], Std.parseInt(animBindings[2]), Common.parseBool(animBindings[3]);
+		}
 		animation.addByPrefix('Idle', 'Idle', 24, true);
 		animation.addByPrefix('Walk', 'Run', 24, false);
 		animation.addByPrefix('JumpInt', 'JumpInt', 24, false);
