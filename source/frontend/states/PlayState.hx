@@ -82,7 +82,7 @@ class PlayState extends FlxTransitionableState
 				add(spriteMap.get(object[0]));
 				if (object[8] == 'true') // I don't have a string to Collider type function, I'll do it when I get home.
 					//collisionObjects.add(spriteMap.get(object[0]));
-;			}
+			}
 			for (object in npcs)
 			{
 				var obj = new NPC(object[2], object[3], '', collisionObjects);
