@@ -54,4 +54,11 @@ class Common
 			return -1;
 		return 0;
 	}
+
+	public static function parseBool(s:String)
+	{// this can be a one-liner, i forgot how though
+		if(s == "true")
+			return true;
+		return false;
+	}
 }
