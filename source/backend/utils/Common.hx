@@ -22,6 +22,7 @@ typedef PlayerAssets =
 	var deathXml:FlxXmlAsset;
 	var dialogueImg:FlxGraphicAsset;
 	var dialogueXml:FlxXmlAsset;
+	var properties:Array<String>;
 	var animData:Array<Array<String>>;
 	var soundData:Array<Array<String>>;
 }
