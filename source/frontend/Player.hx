@@ -24,7 +24,7 @@ class Player extends PhysicsObject
 	var _down = false;
 	var _jump = false;
 
-	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>)
+	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>, ?animBingings:Array<Array<String>> = 0)
 	{
 		super(xPos, yPos, name, colliders, CONTROLLER);
 		assets = GameAssets.getPlayerAssets(name);
