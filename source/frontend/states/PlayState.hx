@@ -2,6 +2,7 @@ package frontend.states;
 
 import backend.GameHud;
 import backend.ingame.objects.PhysicsObject;
+import backend.utils.Common;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -35,7 +36,8 @@ class PlayState extends FlxTransitionableState
 	public var levelPath:String = '';
 	public var hasADHData:Bool = false;
 
-	override public function new(?levelPath:String = '', ?ADHData:Array<Array<Array<String>>>, ?Properties:Array<String>, ?TransIn:TransitionData, ?TransOut:TransitionData)
+	override public function new(?levelPath:String = '', ?ADHData:Array<Array<Array<String>>>, ?Properties:Array<String>, ?TransIn:TransitionData,
+			?TransOut:TransitionData)
 	{
 		super(TransIn, TransOut);
 		if (ADHData != null)
@@ -71,31 +73,36 @@ class PlayState extends FlxTransitionableState
 			jimBanana.scale.set(0.4, 0.4);
 			jimBanana.updateHitbox();
 			add(jimBanana);
-		}else{
+		}
+		else
+		{
 			for (object in level)
 			{
-				var obj = new FlxSprite(Std.parseint(object[2]), Std.parseint(object[3]), '$levelPath/${object[1]}');
-				obj.scale.set(Std.parsefloat(object[4]), Std.parsefloat(object[5]));
+				var obj = new FlxSprite(Std.parseInt(object[2]), Std.parseInt(object[3]), '$levelPath/${object[1]}');
+				obj.scale.set(Std.parseFloat(object[4]), Std.parseFloat(object[5]));
 				obj.updateHitbox();
-				obj.alpha = Std.parsefloat(object[6]);
+				obj.alpha = Std.parseFloat(object[6]);
 				spriteMap.set(object[0], obj);
 				add(spriteMap.get(object[0]));
-				if (object[8] == 'true') // I don't have a string to Collider type function, I'll do it when I get home.
-					//collisionObjects.add(spriteMap.get(object[0]));
+				// if (object[8] == 'true') -- I don't have a string to Collider type function, I'll do it when I get home.
+				// collisionObjects.add(spriteMap.get(object[0]));
 			}
 			for (object in npcs)
 			{
-				var obj = new NPC(object[2], object[3], '', collisionObjects);
-				obj.load(object[1], null, object[7]);
-				obj.scale.set(Std.parsefloat(object[4]), Std.parsefloat(object[5]));
+				var obj = new NPC(Std.parseInt(object[2]), Std.parseInt(object[3]), '', collisionObjects);
+				obj.load(object[1], null, Common.parseBool(object[7]));
+				obj.scale.set(Std.parseFloat(object[4]), Std.parseFloat(object[5]));
 				obj.updateHitbox();
-				obj.alpha = Std.parsefloat(object[6]);
-				spriteMap.set(object[0], obj);
-				add(spriteMap.get(object[0]));
-				if (object[8] == 'true'){
-					collisionObjects.add(spriteMap.get(object[0]));
-				}else{
-					spriteMap.get(object[0]).hasPhysics = false;
+				obj.alpha = Std.parseFloat(object[6]);
+				npcMap.set(object[0], obj);
+				add(npcMap.get(object[0]));
+				if (object[8] == 'true')
+				{
+					collisionObjects.add(npcMap.get(object[0]));
+				}
+				else
+				{
+					npcMap.get(object[0]).hasPhysics = false;
 				}
 			}
 		}

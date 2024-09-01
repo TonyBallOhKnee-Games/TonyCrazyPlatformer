@@ -1,0 +1,4 @@
+ScaleX: 0.35;
+ScaleY: 0.35;
+PhysDragMult: 4;
+Speed = 4.5;
