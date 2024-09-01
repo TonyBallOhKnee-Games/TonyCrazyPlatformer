@@ -81,7 +81,8 @@ class GameAssets
 		var deathXml = '$charPath/death.xml';
 		var dialogueImg = '$charPath/dialogue.png';
 		var dialogueXml = '$charPath/dialogue.xml';
-		var animData = ''; // It's not done yet.
+		var animBindings = ADHUtil.ParseAA(File.getContent('$charPath/animBindings.adh'), ',');
+		var properties = ADHUtil.ParseAA(File.getContent('$charPath/properties.adh'), ':');
 		var soundData = ADHUtil.ParseAA(File.getContent('$charPath/sounds/soundBindings.adh'), ':');
 		return {
 			charPath: charPath,
@@ -91,7 +92,8 @@ class GameAssets
 			deathXml: deathXml,
 			dialogueImg: dialogueImg,
 			dialogueXml: dialogueXml,
-			animData: animData,
+			properties: properties,
+			animBindings: animBindings,
 			soundData: soundData
 		};
 	}

@@ -22,7 +22,8 @@ typedef PlayerAssets =
 	var deathXml:FlxXmlAsset;
 	var dialogueImg:FlxGraphicAsset;
 	var dialogueXml:FlxXmlAsset;
-	var animData:String; // I need to make this a JSON when the time rolls around.
+	var properties:Array<Array<String>>;
+	var animBindings:Array<Array<String>>;
 	var soundData:Array<Array<String>>;
 }
 
@@ -56,7 +57,9 @@ class Common
 	}
 
 	public static function parseBool(s:String)
-	{
-		return s == "true";
+	{ // this can be a one-liner, i forgot how though
+		if (s == "true")
+			return true;
+		return false;
 	}
 }
