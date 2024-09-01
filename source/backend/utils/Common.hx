@@ -22,8 +22,8 @@ typedef PlayerAssets =
 	var deathXml:FlxXmlAsset;
 	var dialogueImg:FlxGraphicAsset;
 	var dialogueXml:FlxXmlAsset;
-	var properties:Array<String>;
-	var animData:Array<Array<String>>;
+	var properties:Array<Array<String>>;
+	var animBindings:Array<Array<String>>;
 	var soundData:Array<Array<String>>;
 }
 
@@ -57,8 +57,8 @@ class Common
 	}
 
 	public static function parseBool(s:String)
-	{// this can be a one-liner, i forgot how though
-		if(s == "true")
+	{ // this can be a one-liner, i forgot how though
+		if (s == "true")
 			return true;
 		return false;
 	}

@@ -1,0 +1,6 @@
+Idle, Idle, 24, true;
+Walk, Run, 24, true;
+JumpInt, JumpInt, 24, false;
+Jump, Jump0, 24, false;
+Crouch, Crouch, 24, false;
+Attack, Attack, 24, false;
