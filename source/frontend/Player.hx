@@ -1,10 +1,10 @@
 package frontend;
 
 import backend.ingame.objects.PhysicsObject;
+import backend.utils.AssetUtil.CharacterAssets;
 import backend.utils.Common.ColliderType;
 import backend.utils.Common.PlayerAssets;
 import backend.utils.Common;
-import backend.utils.GameAssets;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -32,7 +32,7 @@ class Player extends PhysicsObject
 	public function new(xPos:Int = 0, yPos:Int = 0, name:FlxGraphicAsset, colliders:FlxTypedGroup<PhysicsObject>)
 	{
 		super(xPos, yPos, name, colliders, CONTROLLER);
-		assets = GameAssets.getPlayerAssets(name);
+		assets = CharacterAssets.getPlayerAssets(name);
 		frames = FlxAtlasFrames.fromSparrow(assets.charImg, assets.charXml);
 		if (assets.animBindings != null)
 		{

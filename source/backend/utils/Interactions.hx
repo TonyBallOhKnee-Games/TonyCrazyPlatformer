@@ -5,12 +5,12 @@ import flixel.FlxObject;
 
 class Interactions
 {
-	public static function objectCollision(object1:FlxObject, object2:FlxObject) // TODO: FIX THIS!! THIS DON'T WORK!
+	public static function objectCollision(object1:FlxObject, object2:FlxObject)
 	{
-		return object1.x > object2.x
-			&& object1.x < object2.x + object2.width
-			&& object1.y > object2.y
-			&& object1.y < object2.y + object2.height;
+		return object2.x >= object1.x + object1.width
+			|| object2.x + object2.width <= object1.x
+			|| object2.y >= object1.y + object1.height
+			|| object2.y + object2.height <= object1.y;
 	}
 
 	public static function objectCollisionMouse(object:FlxObject)

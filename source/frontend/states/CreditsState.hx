@@ -1,6 +1,6 @@
 package frontend.states;
 
-import backend.utils.GameAssets;
+import backend.utils.AssetUtil;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -16,7 +16,7 @@ class CreditsState extends FlxTransitionableState
 		super.create();
 
 		var background:FlxSprite = new FlxSprite(0, 0);
-		background.loadGraphic(GameAssets.getAsset('Options Menu', 'BG'));
+		background.loadGraphic(UIAssets.getAsset('Options Menu', 'BG'));
 		background.antialiasing = true;
 		add(background);
 

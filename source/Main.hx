@@ -1,6 +1,7 @@
 package;
 
 import debug.FPSCounter;
+import flixel.FlxG;
 import flixel.FlxGame;
 import frontend.states.CachingState;
 import openfl.display.Sprite;
@@ -10,7 +11,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		var game:FlxGame = new FlxGame(1280, 720, CachingState, 240, 240, true);
+		var game:FlxGame = new FlxGame(1280, 720, CachingState, 250, 250, true);
 		addChild(game);
 
 		#if debug

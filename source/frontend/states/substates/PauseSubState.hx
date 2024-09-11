@@ -1,6 +1,6 @@
 package frontend.states.substates;
 
-import backend.utils.GameAssets;
+import backend.utils.AssetUtil.UIAssets;
 import backend.utils.TweenHelper;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -53,7 +53,7 @@ class PauseSubState extends FlxSubState
 
 		// Characters
 		gloria = new FlxSprite(239, 784.2);
-		gloria.loadGraphic(GameAssets.getAsset('Pause Menu', 'Gloria'));
+		gloria.loadGraphic(UIAssets.getAsset('Pause Menu', 'Gloria'));
 		gloria.antialiasing = true;
 		gloria.alpha = 0;
 		gloria.camera = playState.hudCam;
@@ -61,7 +61,7 @@ class PauseSubState extends FlxSubState
 		add(gloria);
 
 		tony = new FlxSprite(1323.3, 168.05);
-		tony.loadGraphic(GameAssets.getAsset('Pause Menu', 'Tony'));
+		tony.loadGraphic(UIAssets.getAsset('Pause Menu', 'Tony'));
 		tony.antialiasing = true;
 		tony.alpha = 0;
 		tony.camera = playState.hudCam;
@@ -69,7 +69,7 @@ class PauseSubState extends FlxSubState
 		add(tony);
 
 		baloney = new FlxSprite(-697.65, 126.5);
-		baloney.loadGraphic(GameAssets.getAsset('Pause Menu', 'Baloney'));
+		baloney.loadGraphic(UIAssets.getAsset('Pause Menu', 'Baloney'));
 		baloney.antialiasing = true;
 		baloney.alpha = 0;
 		baloney.camera = playState.hudCam;
@@ -81,7 +81,7 @@ class PauseSubState extends FlxSubState
 
 		// Pause Text
 		pauseText = new FlxSprite(396.55, -144.55);
-		pauseText.loadGraphic(GameAssets.getAsset('Pause Menu', 'Paused'));
+		pauseText.loadGraphic(UIAssets.getAsset('Pause Menu', 'Paused'));
 		pauseText.antialiasing = true;
 		pauseText.alpha = 0;
 		pauseText.camera = playState.hudCam;

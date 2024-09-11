@@ -1,7 +1,8 @@
 package frontend.states;
 
+import backend.utils.AssetUtil.UIAssets;
 import backend.utils.CachingUtil;
-import backend.utils.GameAssets;
+import debug.states.LevelEditor;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -57,24 +58,24 @@ class MainMenuState extends FlxTransitionableState
 
 		// Add background image
 		var sky:FlxSprite = new FlxSprite(0, 0);
-		sky.loadGraphic(GameAssets.getAsset('Main Menu', 'Sky'));
+		sky.loadGraphic(UIAssets.getAsset('Main Menu', 'Sky'));
 		sky.antialiasing = true;
 		add(sky);
 
-		logoShit.frames = FlxAtlasFrames.fromSparrow(GameAssets.getAsset('Main Menu', 'Logo'), 'assets/images/ui/menus/main/logo.xml');
+		logoShit.frames = FlxAtlasFrames.fromSparrow(UIAssets.getAsset('Main Menu', 'Logo'), 'assets/images/ui/menus/main/logo.xml');
 		logoShit.animation.addByPrefix('logoShit', 'coolness', 24, false);
 		logoShit.antialiasing = true;
 		logoShit.animation.play("logoShit");
 		add(logoShit);
 
-		tonyDovark.frames = FlxAtlasFrames.fromSparrow(GameAssets.getAsset('Main Menu', 'TonyMenu'), 'assets/images/ui/menus/main/TonyMenu.xml');
+		tonyDovark.frames = FlxAtlasFrames.fromSparrow(UIAssets.getAsset('Main Menu', 'TonyMenu'), 'assets/images/ui/menus/main/TonyMenu.xml');
 		tonyDovark.animation.addByPrefix('tonyDovark', 'TonyBop', 24, false);
 		tonyDovark.antialiasing = true;
 		tonyDovark.animation.play("tonyDovark");
 		add(tonyDovark);
 
 		var start:FlxSprite = new FlxSprite(1430.6, 465.35);
-		start.loadGraphic(GameAssets.getAsset('Main Menu', 'New Game'));
+		start.loadGraphic(UIAssets.getAsset('Main Menu', 'New Game'));
 		start.antialiasing = true;
 		FlxTween.tween(start, {x: 374.95, y: 465.35}, 2, {
 			ease: FlxEase.circInOut,
@@ -83,7 +84,7 @@ class MainMenuState extends FlxTransitionableState
 		add(start);
 
 		var load:FlxSprite = new FlxSprite(1424.4, 523.25);
-		load.loadGraphic(GameAssets.getAsset('Main Menu', 'Load Game'));
+		load.loadGraphic(UIAssets.getAsset('Main Menu', 'Load Game'));
 		load.antialiasing = true;
 		FlxTween.tween(load, {x: 493.75, y: 523.25}, 2, {
 			ease: FlxEase.circInOut,
@@ -92,7 +93,7 @@ class MainMenuState extends FlxTransitionableState
 		add(load);
 
 		var options:FlxSprite = new FlxSprite(1456.3, 581.15);
-		options.loadGraphic(GameAssets.getAsset('Main Menu', 'Options'));
+		options.loadGraphic(UIAssets.getAsset('Main Menu', 'Options'));
 		options.antialiasing = true;
 		FlxTween.tween(options, {x: 637, y: 581.15}, 2, {
 			ease: FlxEase.circInOut,
@@ -101,7 +102,7 @@ class MainMenuState extends FlxTransitionableState
 		add(options);
 
 		var credtis:FlxSprite = new FlxSprite(1462.45, 639.05);
-		credtis.loadGraphic(GameAssets.getAsset('Main Menu', 'Credits'));
+		credtis.loadGraphic(UIAssets.getAsset('Main Menu', 'Credits'));
 		credtis.antialiasing = true;
 		FlxTween.tween(credtis, {x: 709.75, y: 639.05}, 2, {
 			ease: FlxEase.circInOut,
@@ -110,7 +111,7 @@ class MainMenuState extends FlxTransitionableState
 		add(credtis);
 
 		selectorguy = new FlxSprite(1290.65, 465.35);
-		selectorguy.loadGraphic(GameAssets.getAsset('Main Menu', 'Selector'));
+		selectorguy.loadGraphic(UIAssets.getAsset('Main Menu', 'Selector'));
 		selectorguy.antialiasing = true;
 		FlxTween.tween(selectorguy, {x: 577.65, y: 465.35}, 2, {
 			ease: FlxEase.quartOut,
@@ -146,7 +147,7 @@ class MainMenuState extends FlxTransitionableState
 
 	private function goToCredits():Void
 	{
-		FlxG.switchState(new CreditsState());
+		FlxG.switchState(new LevelEditor());
 	}
 
 	private function openYouTube():Void

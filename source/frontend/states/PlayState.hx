@@ -58,12 +58,13 @@ class PlayState extends FlxTransitionableState
 		// Level Initialization
 		FlxG.sound.music.stop(); // Stopping current music
 		FlxG.sound.playMusic(properties[2], Std.parseFloat(properties[3]), true); // TEMPORARY bg music
+		FlxG.worldBounds.set(FlxG.camera.x - 20000, FlxG.camera.y - 20000, 100000, 1000000); // Good enough.
 		bgColor = FlxColor.fromString(properties[0]); // Sky color
 
 		if (!hasADHData)
 		{
 			floor = new PhysicsObject(0, 550, '', collisionObjects, FLOOR);
-			floor.makeGraphic(1280, 300, FlxColor.BLACK);
+			floor.makeGraphic(2000, 300, FlxColor.BLACK);
 			collisionObjects.add(floor);
 			add(floor);
 
@@ -122,6 +123,7 @@ class PlayState extends FlxTransitionableState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		FlxG.worldBounds.setPosition(FlxG.camera.x - 20000, FlxG.camera.y - 20000);
 		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER, 15 * elapsed);
 		if (FlxG.keys.justPressed.ESCAPE)
 		{

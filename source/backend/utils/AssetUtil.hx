@@ -7,7 +7,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 import sys.FileSystem;
 import sys.io.File;
 
-class GameAssets
+class UIAssets
 {
 	public static var assetMaps:Map<String, Map<String, FlxGraphic>>;
 
@@ -57,9 +57,12 @@ class GameAssets
 
 	public static function getAsset(catagory:String, assetName:String):FlxGraphicAsset
 	{
-		return GameAssets.assetMaps.get(catagory).get(assetName); // Shorten it to a small function. How convinient! :D
+		return assetMaps.get(catagory).get(assetName); // Shorten it to a small function. How convinient! :D
 	}
+}
 
+class CharacterAssets
+{
 	public static function getNPCAssets(name:String):NPCAssets
 	{
 		var npcPath = 'assets/data/characters/npcs/$name';
@@ -96,5 +99,34 @@ class GameAssets
 			animBindings: animBindings,
 			soundData: soundData
 		};
+	}
+}
+
+class WorldAssets
+{
+	public static function initWorldPath(worldName:String)
+	{
+		var worldPath:String = 'assets/data/worlds/$worldName';
+		FileSystem.createDirectory(worldPath);
+		File.saveContent('$worldPath/properties.adh', '');
+	}
+
+	public static function initLevelPath(worldName:String, levelName:String)
+	{
+		var levelPath:String = 'assets/data/worlds/$worldName/levels/$levelName';
+		FileSystem.createDirectory(levelPath);
+		File.saveContent('$levelPath/level.hx', '');
+		File.saveContent('$levelPath/level.adh', '');
+		File.saveContent('$levelPath/properties.adh', '');
+	}
+
+	public static function getWorldPath(worldName:String)
+	{
+		return 'assets/data/worlds/$worldName';
+	}
+
+	public static function getLevelPath(worldName:String, levelName:String)
+	{
+		return 'assets/data/worlds/$worldName/levels/$levelName';
 	}
 }

@@ -1,7 +1,7 @@
 package frontend.states;
 
+import backend.utils.AssetUtil.UIAssets;
 import backend.utils.FileUtil;
-import backend.utils.GameAssets;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -24,7 +24,7 @@ class BaloneyState extends FlxTransitionableState
 
 		bgColor = 0xffcccccc;
 
-		dead.frames = FlxAtlasFrames.fromSparrow(GameAssets.getAsset('Misc Assets', 'TonyBall Studios'), 'assets/images/ui/misc/TonyBall.xml');
+		dead.frames = FlxAtlasFrames.fromSparrow(UIAssets.getAsset('Misc Assets', 'TonyBall Studios'), 'assets/images/ui/misc/TonyBall.xml');
 		dead.animation.addByPrefix('Dead', 'EpicSause', 24, false);
 		dead.antialiasing = true;
 		dead.animation.play("Dead");

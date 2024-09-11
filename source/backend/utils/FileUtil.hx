@@ -1,6 +1,7 @@
 package backend.utils;
 
 import flixel.graphics.FlxGraphic;
+import hx.files.File;
 
 class FileUtil
 {
@@ -14,5 +15,18 @@ class FileUtil
 	public static function getUIGraphicFromCache(path:String):FlxGraphic
 	{
 		return cache.get(path);
+	}
+
+	public static function copyFileTo(f:File, target:String):File
+	{
+		try
+		{
+			f.copyTo(target);
+		}
+		catch (e)
+		{
+			f.copyTo(target, [OVERWRITE]);
+		}
+		return File.of(target);
 	}
 }

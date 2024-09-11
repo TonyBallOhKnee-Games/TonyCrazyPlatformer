@@ -1,7 +1,9 @@
 package backend.utils;
 
+import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.system.FlxAssets.FlxXmlAsset;
+import frontend.NPC;
 
 typedef AnimData =
 {
@@ -35,6 +37,12 @@ typedef NPCAssets =
 	// I need to make this a lot bigger when needed.
 }
 
+typedef LevelAssets =
+{
+	var spriteMap:Map<String, FlxSprite>;
+	var npcMap:Map<String, NPC>;
+}
+
 enum ColliderType
 {
 	FLOOR;
@@ -57,9 +65,7 @@ class Common
 	}
 
 	public static function parseBool(s:String)
-	{ // this can be a one-liner, i forgot how though
-		if (s == "true")
-			return true;
-		return false;
+	{
+		return s == 'true' ? true : false;
 	}
 }

@@ -1,9 +1,9 @@
 package frontend;
 
 import backend.ingame.objects.PhysicsObject;
+import backend.utils.AssetUtil.CharacterAssets;
 import backend.utils.Common.AnimData;
 import backend.utils.Common.NPCAssets;
-import backend.utils.GameAssets;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -36,7 +36,7 @@ class NPC extends PhysicsObject
 		{
 			anims = defAnimData;
 		}
-		assets = GameAssets.getNPCAssets(charName);
+		assets = CharacterAssets.getNPCAssets(charName);
 		frames = FlxAtlasFrames.fromSparrow(assets.npcImg, assets.npcXml);
 		for (anim in anims)
 			animation.addByPrefix(anim.name, anim.prefix, anim.fps, anim.looped, anim.flipX, anim.flipY);

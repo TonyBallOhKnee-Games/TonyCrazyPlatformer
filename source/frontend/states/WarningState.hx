@@ -1,6 +1,6 @@
 package frontend.states;
 
-import backend.utils.GameAssets;
+import backend.utils.AssetUtil.UIAssets;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -44,7 +44,7 @@ class WarningState extends FlxTransitionableState
 
 		this.bgColor = 0xff000000;
 		var warningBG:FlxSprite = new FlxSprite(0, 0);
-		warningBG.loadGraphic(GameAssets.getAsset('Warning Menu', 'Hey'));
+		warningBG.loadGraphic(UIAssets.getAsset('Warning Menu', 'Hey'));
 		warningBG.antialiasing = true;
 		add(warningBG);
 

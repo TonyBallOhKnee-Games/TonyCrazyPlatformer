@@ -1,5 +1,7 @@
 package backend.utils;
 
+import backend.utils.AssetUtil.UIAssets;
+
 class Initializer
 {
 	public static function initialize()
@@ -9,6 +11,6 @@ class Initializer
 
 	public static function postCache()
 	{
-		GameAssets.initAssetMaps();
+		UIAssets.initAssetMaps();
 	}
 }
