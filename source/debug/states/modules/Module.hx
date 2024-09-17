@@ -9,7 +9,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 
-class Module
+class Module extends FlxTypedGroup<FlxObject>
 {
 	public var parent:FlxSprite;
 	public var targetCam:FlxCamera;
@@ -19,6 +19,7 @@ class Module
 
 	public function new(parent:FlxSprite, targetCam:FlxCamera)
 	{
+		super();
 		this.parent = parent;
 		this.targetCam = targetCam;
 	}
@@ -27,6 +28,7 @@ class Module
 	{
 		hudAssets.clear();
 		hudTexts.clear();
+		clear();
 		hudAssets = null;
 		hudTexts = null;
 		loaded = false;
@@ -34,24 +36,7 @@ class Module
 
 	public function updateModule()
 	{
-		if (loaded)
-		{
-			for (obj in hudAssets)
-			{
-				if (obj != null && obj.exists && obj.visible) // functioning as a flixel group
-				{
-					obj.draw();
-				}
-			}
-			for (text in hudTexts)
-			{
-				if (text != null && text.exists && text.visible)
-				{
-					text.draw();
-				}
-			}
-		}
-		else
+		if (!loaded)
 			return;
 	}
 

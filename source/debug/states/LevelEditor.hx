@@ -6,6 +6,7 @@ import backend.utils.FileUtil;
 import backend.utils.Interactions;
 import debug.states.modules.EditorModule;
 import debug.states.modules.ObjectModifiers;
+import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -21,6 +22,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.system.debug.FlxDebugger;
 import flixel.text.FlxText;
+import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 import frontend.NPC;
@@ -38,25 +40,32 @@ using flixel.util.FlxSpriteUtil;
 
 class LevelEditor extends FlxTransitionableState
 {
-	public static var objSelectedBitmap:BitmapData;
-	public static var objSelected:FlxSprite;
-	public static var spriteMap:Map<String, FlxSprite>;
+	public static var objSelected:EditorSprite;
+	public static var spriteMap:Map<String, EditorSprite>;
 	public static var npcMap:Map<String, NPC>;
 	public static var hudCam:FlxCamera;
 	public static var followPos:FlxObject;
 	public static var hudModules:Map<String, EditorModule>;
 	public static var hudBox:FlxSprite;
+	public static var isNull:Bool = true;
+
+	var displaySpr:FlxSprite;
+
+	var youCan:FlxSprite;
 
 	override public function create():Void
 	{
 		super.create();
 		WorldAssets.initLevelPath('BASE', 'LOLIPOP');
-		spriteMap = new Map<String, FlxSprite>();
+		spriteMap = new Map<String, EditorSprite>();
 		npcMap = new Map<String, NPC>();
 		hudCam = new FlxCamera(0, 0, 1280, 720);
 		hudCam.bgColor = FlxColor.TRANSPARENT;
 		FlxG.cameras.add(hudCam, false);
 		followPos = new FlxObject(0, 0, 0, 0);
+		displaySpr = new FlxSprite(-2000, -2000);
+		displaySpr.makeGraphic(5000, 5000, FlxColor.TRANSPARENT);
+		add(displaySpr);
 
 		generateHud();
 	}
@@ -73,11 +82,10 @@ class LevelEditor extends FlxTransitionableState
 		{
 			loadImage();
 		}
-
+		updateHUD();
 		cameraMovement(); // HELP ME PLEASE 😭
 		objectSelectionCheck();
 		updateSelectedObject();
-		updateHUD();
 	}
 
 	function updateHUD()
@@ -87,13 +95,16 @@ class LevelEditor extends FlxTransitionableState
 			module.targetCam = hudCam; // Update all instances
 			module.parent = hudBox;
 			module.selectedObject = objSelected;
+			module.objNull = isNull;
 			module.updateModule();
 		}
 	}
 
 	function pushHudModules()
 	{
-		hudModules.set('objectModifiers', new ObjectModifiers(hudBox, hudCam, objSelected));
+		var objMods = new ObjectModifiers(hudBox, hudCam, objSelected, isNull);
+		hudModules.set('objectModifiers', objMods);
+		add(objMods);
 	}
 
 	function generateHud()
@@ -105,6 +116,7 @@ class LevelEditor extends FlxTransitionableState
 		hudBox.camera = hudCam;
 		hudBox.alpha = 0.45;
 		hudBox.screenCenter(Y);
+		hudBox.updateHitbox();
 		add(hudBox);
 
 		pushHudModules();
@@ -124,7 +136,7 @@ class LevelEditor extends FlxTransitionableState
 
 	function updateSelectedObject()
 	{
-		if (objSelected != null)
+		if (!isNull)
 		{
 			var posX:Float = 0, posY:Float = 0;
 			if (FlxG.keys.justPressed.LEFT)
@@ -148,25 +160,59 @@ class LevelEditor extends FlxTransitionableState
 		}
 	}
 
+	override function destroy() // Destroy and nullify everything.
+	{
+		super.destroy();
+		FlxG.cameras.remove(hudCam);
+		objSelected.destroy();
+		for (obj in spriteMap)
+			obj.destroy();
+		spriteMap.clear();
+		for (obj in npcMap)
+			obj.destroy();
+		npcMap.clear();
+		hudCam.destroy();
+		followPos.destroy();
+		for (module in hudModules)
+		{
+			module.unloadModule();
+			module.destroy();
+			module = null;
+		}
+		hudModules.clear();
+		hudBox.destroy();
+		objSelected = null;
+		spriteMap = null;
+		npcMap = null;
+		hudCam = null;
+		followPos = null;
+		hudModules = null;
+		hudBox = null;
+	}
+
 	function objectSelectionCheck()
 	{
-		if (FlxG.mouse.justPressed)
+		if (FlxG.mouse.justPressed && !Interactions.spriteCollisionMouse(hudBox, hudCam))
 		{
 			var objPassed = false;
 			for (obj in spriteMap)
 			{
 				if (Interactions.objectCollisionMouse(obj))
 				{
-					if (objSelected != null) // Remove Old Selection Box
-						objSelected.loadGraphic(objSelectedBitmap);
-
-					objSelectedBitmap = obj.pixels.clone();
-					objSelected = obj;
 					objPassed = true;
-					objSelected.drawRect(objSelected.x, objSelected.y, objSelected.width, objSelected.height, FlxColor.TRANSPARENT, {
-						thickness: 5,
-						color: FlxColor.RED
-					}); // Draw New Selection Box
+					isNull = false;
+					if (obj != objSelected)
+					{
+						if (objSelected != null)
+						{ // Remove Old Selection Box
+							trace('removing!');
+							objSelected.loadGraphic(objSelected.normalGraphic);
+						}
+						trace('adding!');
+						trace('checked.');
+						obj.loadGraphic(obj.outlineGraphic);
+						objSelected = obj;
+					}
 					break;
 				}
 				else
@@ -176,12 +222,15 @@ class LevelEditor extends FlxTransitionableState
 			}
 			if (!objPassed)
 			{
-				if (!Interactions.objectCollisionMouse(hudBox))
-				{
-					if (objSelected != null) // Remove Old Selection Box
-						objSelected.loadGraphic(objSelectedBitmap);
-					objSelected = null;
+				trace('extra ckeck.');
+				if (objSelected != null)
+				{ // Remove Old Selection Box
+					youCan = objSelected.clone();
+					youCan.loadGraphic(objSelected.normalGraphic);
+					objSelected.loadGraphic(objSelected.normalGraphic);
+					add(youCan);
 				}
+				isNull = true;
 			}
 		}
 	}
@@ -230,12 +279,6 @@ class LevelEditor extends FlxTransitionableState
 		}
 	}
 
-	override public function destroy()
-	{
-		super.destroy();
-		FlxG.cameras.remove(hudCam);
-	}
-
 	var fileRef:FileReference;
 
 	public function loadImage()
@@ -282,10 +325,10 @@ class LevelEditor extends FlxTransitionableState
 
 	function loadSpriteAsset(path:String, name:String)
 	{
-		var spr:FlxSprite = new FlxSprite(0, 0);
-		spr.loadGraphic(BitmapData.fromFile(path));
+		var spr:EditorSprite = new EditorSprite(0, 0);
+		spr.loadGraphics(BitmapData.fromFile(path));
 		spr.camera = FlxG.camera;
 		add(spr);
-		spriteMap.set(name, spr);
+		spriteMap.set(name + Lambda.count(spriteMap), spr);
 	}
 }
